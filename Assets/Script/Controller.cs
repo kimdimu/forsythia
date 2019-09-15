@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
 
     private Vector3 StickFirstPos;  // 조이스틱의 처음 위치.
     private Vector3 JoyVec;         // 조이스틱의 벡터(방향)
+    public float PlayerMoveSpeed = 50f;   // 플레이어 스피드
     private float Radius;           // 조이스틱 배경의 반 지름.
     private bool MoveFlag;          // 플레이어 움직임 스위치.
 
@@ -28,7 +29,7 @@ public class Controller : MonoBehaviour
     void Update()
     {
         if (MoveFlag)
-            Player.transform.Translate(Vector3.forward * Time.deltaTime * 10f);
+            Player.transform.Translate(Vector3.forward * Time.deltaTime * PlayerMoveSpeed);
     }
 
     // 드래그

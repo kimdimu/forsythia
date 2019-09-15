@@ -22,7 +22,6 @@ public class Camera : MonoBehaviour
         float currYAngle = Mathf.LerpAngle(tr.eulerAngles.y, target.eulerAngles.y,dampRotate * Time.deltaTime);
         //쿼티니언으로 변경
         Quaternion rot = Quaternion.Euler(0, currYAngle, 0);
-
         //카메라 위치 설정후 타겟바라보게하기
         tr.position = target.position - (rot * Vector3.forward * dist) + (Vector3.up * height);
         tr.LookAt(target);

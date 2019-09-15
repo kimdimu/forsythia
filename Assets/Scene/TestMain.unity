@@ -706,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 624.3
+      value: 788.9
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -714,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -18.5
+      value: 150.6
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1700,7 +1700,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f1ac95f10f1a240b6008917aecdf5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!135 &1030773030
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1713,24 +1712,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
-  m_Center: {x: 0, y: 0.1, z: 0}
---- !u!143 &1030773031
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030773028}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 0.01
-  m_Radius: 0.01
-  m_SlopeLimit: 30
-  m_StepOffset: 1
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!4 &1030773033 stripped
 Transform:
@@ -1752,7 +1733,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1030773035
 MonoBehaviour:
@@ -1761,7 +1742,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030773028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d5f5b3659e0929418b0741996412bfc, type: 3}
   m_Name: 
@@ -2084,7 +2065,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.05, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1291683609
 MeshRenderer:
@@ -2646,6 +2627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1030773033}
   Stick: {fileID: 60018277}
+  PlayerMoveSpeed: 50
 --- !u!114 &1749250265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2805,7 +2787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f1ac95f10f1a240b6008917aecdf5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
 --- !u!114 &1772761777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2831,6 +2812,7 @@ GameObject:
   - component: {fileID: 1896272555}
   - component: {fileID: 1896272554}
   - component: {fileID: 1896272557}
+  - component: {fileID: 1896272558}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2916,9 +2898,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1030773033}
-  dist: 120
+  dist: 150
   height: 20
   dampRotate: 5
+--- !u!45 &1896272558
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896272553}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &1905346575
 GameObject:
   m_ObjectHideFlags: 0
