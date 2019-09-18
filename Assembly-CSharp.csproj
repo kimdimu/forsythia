@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\InGameScript\ClickButton.cs" />
+    <Compile Include="Assets\InGameScript\DataController.cs" />
     <Compile Include="Assets\InGameScript\InGameCamera.cs" />
     <Compile Include="Assets\InGameScript\InGamePlayer.cs" />
+    <Compile Include="Assets\InGameScript\SoundSetting.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
     <Compile Include="Assets\Script\Controller.cs" />
     <Compile Include="Assets\Script\FauxGravityAttractor.cs" />
