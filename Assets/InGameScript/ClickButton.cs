@@ -21,4 +21,14 @@ public class ClickButton : MonoBehaviour
     {
         playerScript.IsWeak = true;
     }
+
+    public void LeftJump()
+    {
+        playerScript.IsLeftJump = true;
+    }
+
+    public void RightJump()
+    {
+        playerScript.IsRightJump = true;
+    }
 }
