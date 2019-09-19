@@ -4,87 +4,105 @@ using UnityEngine;
 
 public class InGamePlayer : MonoBehaviour
 {
-    public Rigidbody Player; //FreezePosition 사용 위해 선언
+    public Rigidbody Player;
 
     public bool IsStrong = false; //강하게를 눌렀는지
     public bool IsWeak = false; //약하게를 눌렀는지
+    bool IsPutButton = false; //버튼 누를수 있는지 없는지
 
     int JumpCount = 0; //점프 횟수 카운트
+    int UpNum = 0; //밟은 발판 개수 카운트
 
-    Vector3 StartPosition; //캐릭터의 처음 위치 저장
-
-    //public Transform boardPrefab; //프리팹
-    //public Transform newBoard; //프리팹으로 생성된 오브젝트 저장 변수
-
-    public GameObject Ground; //발판 물체(오브젝트)
-    Vector3 GroundPosition; //발판 위치 저장
-
-    bool IsGround = false; //발판을 밟았는지
+    public GameObject Ground; //복제 될 물체
+    List<GameObject> GroundList = new List<GameObject>(); //오브젝트 리스트 생성
+    
+    GameObject firstground; //처음 발판
 
     void Start()
     {
         IsStrong = false;
         IsWeak = false;
-        IsGround = false;
-
-        StartPosition = Player.transform.position; //캐릭터의 처음 위치 저장
-        //GroundPosition = Ground.transform.position; //발판의 위치 저장
-
-        Player = GetComponent<Rigidbody>(); //FreezePosition 사용 위해 선언
+        IsPutButton = false;
+        
+        firstground = GameObject.FindGameObjectWithTag("Finish"); //처음 발판의 위치 받아오기 위해 사용
+        
+        GroundInit(); //발판 클론 생성
     }
 
     void Update()
     {
-        //강하게 눌렀을 때 + 약하게 안 눌렀을 때 (중복 선택 방지)
-        if(IsStrong && !IsWeak)
+        //강하게 눌렀을 때 + 약하게 안 눌렀을 때 + 발판에 닿았을 때(중복 선택, 연속 선택 방지)
+        if (IsStrong && !IsWeak && IsPutButton)
         {
             for(int i = 0; i < 2; i++)
             {
+                
                 JumpCount++; //점프 횟수 증가
-                //발판 중심으로 플레이어 위치 옮김 / y에 + 4한 이유 : 상자가 발판 사이에 끼여있어서 y 좌표를 올려주었다
-                //옮겨지는 모습 안보임, 해당 위치에 이미 가 있음
-                transform.position = new Vector3(GroundPosition.x, GroundPosition.y+4, GroundPosition.z);
-                IsGround = true; //현재 발판을 밟고 있습니다
+                UpNum++; //발판 개수 증가
+                //해당 발판 위치로 플레이어 옮김                
+                Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
+                GroundList[UpNum].transform.position.y+3, GroundList[UpNum].transform.position.z);
 
                 if (JumpCount >= 2) //발판을 두 번 밟으면
                 {
                     JumpCount = 0; //점프 횟수를 초기화
                     IsStrong = false; //강하게 누른 것이 풀림
-                    IsGround = false; //축 고정 해제
                 }
             }
         }
 
-        //약하게 눌렀을 때 + 강하게 안 눌렀을 때 (중복 선택 방지)
-        if (IsWeak && !IsStrong)
+        //약하게 눌렀을 때 + 강하게 안 눌렀을 때 + 발판에 닿았을 때(중복 선택, 연속 선택 방지)
+        if (IsWeak && !IsStrong && IsPutButton)
         {
             JumpCount++;
-            transform.position = new Vector3(GroundPosition.x, GroundPosition.y+4, GroundPosition.z);
-            IsGround = true;
+            UpNum++;
+            Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
+            GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
 
             if (JumpCount >= 1)
             {
                 JumpCount = 0;
                 IsWeak = false;
-                IsGround = false;
             }
-        }
-
-        if(IsGround == true)
-        {
-            //튕기지 않도록 x, y, z축 고정
-            Player.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         }
     }
 
-    void OnTriggerEnter(Collider ground)
+    void OnCollisionEnter(Collision collision)
     {
-        if(ground.tag == "Ground") //Ground 태그와 충돌하면
+        if (collision.gameObject.tag == "Ground") //플레이어가 Ground 태그와 충돌하면
         {
-            //현재 밟고 있는 발판을 제외한 가장 가까운 발판의 위치(아래 있는 발판 제외)가 GroundPosition이 된다
-           // if(Player.position)
+            Debug.Log("태그됨");
+            IsPutButton = true;
         }
+        else
+        {
+            IsPutButton = false;
+        }
+    }
 
+    //발판 클론 생성시키는 함수
+    void GroundInit()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
+            GameObject _obj = Instantiate(Ground, firstground.transform.position, firstground.transform.rotation) as GameObject;
+            _obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
+
+            GroundList.Add(_obj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
+
+            //클론 위치 변경
+            if (i % 2 == 0) //i가 짝수일 경우 왼쪽에 생성
+            {
+                GroundList[i].transform.position = new Vector3(firstground.transform.position.x,
+                firstground.transform.position.y + 15f * i, transform.position.z);
+            }
+            else //i가 홀수일 경우 오른쪽에 생성
+            {
+                GroundList[i].transform.position = new Vector3(firstground.transform.position.x + 20f,
+                firstground.transform.position.y + 15f * i, transform.position.z);
+            }
+        }
     }
 
     //https://hyunity3d.tistory.com/395
