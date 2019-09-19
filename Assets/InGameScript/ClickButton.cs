@@ -31,4 +31,9 @@ public class ClickButton : MonoBehaviour
     {
         playerScript.IsRightJump = true;
     }
+    //일시정지
+    public void ActivePauseBt()
+    {
+        Time.timeScale = 0; //시간 흐름을 0으로 만듦
+    }
 }

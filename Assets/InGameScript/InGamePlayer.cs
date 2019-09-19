@@ -31,11 +31,14 @@ public class InGamePlayer : MonoBehaviour
 
     int WangBog = 0; //영역 벗어난 횟수 카운트
 
-    public GameObject LeftJump;
-    public GameObject RightJump;
+    public GameObject LeftJump; //왼쪽 도약 키
+    public GameObject RightJump; //오른쪽 도약 키
+
+    int Score = 0; //얻은 점수
 
     void Start()
     {
+        //bool형 false로 초기화
         IsStrong = false;
         IsWeak = false;
         IsPutButton = false;
@@ -65,6 +68,7 @@ public class InGamePlayer : MonoBehaviour
                 Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
                 GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
                 UpNum++; //발판 개수 증가
+                //Score = Score * 2; //스코어가 두배로 적용됨
 
                 if (JumpCount >= 2) //발판을 두 번 밟으면
                 {
@@ -77,7 +81,6 @@ public class InGamePlayer : MonoBehaviour
         //약하게 눌렀을 때 + 강하게 안 눌렀을 때 + 발판에 닿았을 때 + 도약중이 아닐 때 (중복, 연속, 도중 선택 방지)
         if (IsWeak && !IsStrong && IsPutButton && !IsFullUp)
         {
-            Debug.Log("발판 밟은 횟수" + UpNum);
             JumpCount++;
             Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
             GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
@@ -98,7 +101,7 @@ public class InGamePlayer : MonoBehaviour
             RightJump.SetActive(true); //오른쪽 도약 보이게함
             BirdJump.SetActive(true); //도약 바 보이게함
 
-            //if(IsRightJump && IsLeftJump) //오른쪽 도약 키, 왼쪽 도약 키를 눌렀으면
+            //if(IsRightJump && IsLeftJump) //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
 
             //선택 바의 좌표가 끝나는 좌표보다 크거나 같으면 또는 선택 바의 좌표가 시작 좌표보다 작으면 (빨간 영역 넘어가면)
             if (Handle.transform.position.x >= EndPosition.x || Handle.transform.position.x < StartPosition.x)
@@ -166,16 +169,4 @@ public class InGamePlayer : MonoBehaviour
             }
         }
     }
-
-    //https://hyunity3d.tistory.com/395
-    //void MakeBoard()
-    //{
-    //    //가장 최근의 발판과 spPoint와의 거리 구하기
-    //    if (spPoint.position.y - newBoard.position.y >= 5)
-    //    {
-    //        float x = Random.Range(-10f, 10f) * 0.6f;//좌 우 랜덤 생성
-    //        Vector3 pos = new Vector3(x, spPoint.position.y, 0.3f);
-    //        newBoard = Instantiate(boardPrefab, pos, Quaternion.identity) as Transform;
-    //    }
-    //}
 }
