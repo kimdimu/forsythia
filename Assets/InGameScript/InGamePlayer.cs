@@ -82,7 +82,7 @@ public class InGamePlayer : MonoBehaviour
         if(ground.tag == "Ground") //Ground 태그와 충돌하면
         {
             //현재 밟고 있는 발판을 제외한 가장 가까운 발판의 위치(아래 있는 발판 제외)가 GroundPosition이 된다
-            if(Player.position)
+           // if(Player.position)
         }
 
     }
