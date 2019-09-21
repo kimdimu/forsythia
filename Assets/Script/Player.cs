@@ -11,17 +11,38 @@ public class Player : MonoBehaviour
     Vector2 StartPos;
     Vector2 LastPos;
     // SP와 LP 사이의 거리가 일정 이상일 경우 인게임 화면 
+    private GameObject target;
+
+    private GameObject GetClickedObject()
+    {
+        RaycastHit hit;
+        GameObject target = null;
+        Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+        //클릭 주변에 객체들을 체크 
+        if (true == (Physics.Raycast(ray.origin, ray.direction * 10, out hit)))
+        {
+            target = hit.collider.gameObject;
+        }
+        return target;
+    }
 
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            this.StartPos = Input.mousePosition;
+            target = GetClickedObject();
+            if (target.Equals(gameObject))
+            {
+                this.StartPos = Input.mousePosition;
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            this.LastPos = Input.mousePosition;
-            SwipeLength = LastPos.x - StartPos.x;
+            if (target.Equals(gameObject))
+            {
+                this.LastPos = Input.mousePosition;
+                SwipeLength = LastPos.x - StartPos.x;
+            }
         }
         Debug.Log(SwipeLength);
         if(SwipeLength >= 5 || SwipeLength <= - 5)
