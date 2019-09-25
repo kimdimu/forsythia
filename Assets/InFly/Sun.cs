@@ -23,7 +23,7 @@ public class Sun : MonoBehaviour
     //햇살 클론 생성시키는 함수
     void SunInit()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2; i++)
         {
             //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
             GameObject _obj = Instantiate(sun, firstSun.transform.position, firstSun.transform.rotation) as GameObject;
