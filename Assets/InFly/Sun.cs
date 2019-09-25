@@ -26,10 +26,10 @@ public class Sun : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
-            GameObject _obj = Instantiate(sun, firstSun.transform.position, firstSun.transform.rotation) as GameObject;
+            GameObject _Sobj = Instantiate(sun, firstSun.transform.position, firstSun.transform.rotation) as GameObject;
             //_obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
 
-            SunList.Add(_obj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
+            SunList.Add(_Sobj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
 
             //클론 위치 변경
             if (i % 2 == 0) //i가 짝수일 경우 왼쪽에 생성
