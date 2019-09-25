@@ -11,8 +11,6 @@ public class Camera : MonoBehaviour
 
     private Transform tr;
 
-    int aa;
-
     void Start()
     {
         tr = GetComponent<Transform>();
