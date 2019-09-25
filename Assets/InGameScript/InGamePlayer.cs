@@ -19,7 +19,9 @@ public class InGamePlayer : MonoBehaviour
     public GameObject Ground; //복제 될 물체
     List<GameObject> GroundList = new List<GameObject>(); //오브젝트 리스트 생성
     
-    GameObject firstground; //처음 발판
+    GameObject firstground; //처음 발판의 위치 (발판이 생성될 위치)
+
+    GameObject _obj; //생성된 클론
 
     public GameObject BirdJump; //도약 슬라이더
     public GameObject Handle; //선택 바 (움직이는 바)
@@ -34,7 +36,7 @@ public class InGamePlayer : MonoBehaviour
     public GameObject LeftJump; //왼쪽 도약 키
     public GameObject RightJump; //오른쪽 도약 키
 
-    int Score = 0; //얻은 점수
+    int ran; //랜덤 생성되는 발판의 개수 저장
 
     void Start()
     {
@@ -93,7 +95,7 @@ public class InGamePlayer : MonoBehaviour
             }
         }
 
-        if(UpNum > 9) //끝에 다다르면
+        if(UpNum >= ran) //끝에 다다르면
         {
             IsFullUp = true; //도약중으로 바꿈
 
@@ -116,6 +118,8 @@ public class InGamePlayer : MonoBehaviour
          
             if(WangBog == 4) //영역 네 번 벗어나면 = 왕복 두 번
             {
+                Destroy(_obj.gameObject); //클론 삭제
+
                 //처음 발판의 위치로 플레이어 옮김
                 Player.transform.position = new Vector3(Ground.transform.position.x,
                Ground.transform.position.y + 3, Ground.transform.position.z);
@@ -148,10 +152,12 @@ public class InGamePlayer : MonoBehaviour
     //발판 클론 생성시키는 함수
     void GroundInit()
     {
-        for(int i = 0; i < 10; i++)
+        ran = Random.Range(10, 30);
+        
+        for (int i = 0; i < ran; i++)
         {
             //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
-            GameObject _obj = Instantiate(Ground, firstground.transform.position, firstground.transform.rotation) as GameObject;
+            _obj = (GameObject)Instantiate(Ground, firstground.transform.position, firstground.transform.rotation);
             _obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
 
             GroundList.Add(_obj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
