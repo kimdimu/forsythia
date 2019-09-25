@@ -60,6 +60,8 @@
      <Compile Include="Assets\InGameScript\InGameCamera.cs" />
      <Compile Include="Assets\InGameScript\InGamePlayer.cs" />
      <Compile Include="Assets\InGameScript\SoundSetting.cs" />
+     <Compile Include="Assets\InGameScript2\ButtonCon.cs" />
+     <Compile Include="Assets\InGameScript2\ObjectPosition.cs" />
      <Compile Include="Assets\InGameScript2\RandBrunch.cs" />
      <Compile Include="Assets\Script\Camera.cs" />
      <Compile Include="Assets\Script\Controller.cs" />

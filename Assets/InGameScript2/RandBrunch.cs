@@ -45,7 +45,7 @@ public class RandBrunch : MonoBehaviour
 
             positionCon += 50;
 
-            Debug.Log(positionCon);
+            //Debug.Log(positionCon);
 
         }
     }
