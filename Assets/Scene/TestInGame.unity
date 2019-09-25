@@ -1436,12 +1436,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664954945}
-  - component: {fileID: 1664954944}
   - component: {fileID: 1664954943}
   - component: {fileID: 1664954942}
   - component: {fileID: 1664954941}
   - component: {fileID: 1664954939}
   - component: {fileID: 1664954940}
+  - component: {fileID: 1664954944}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -1554,7 +1554,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664954938}
-  m_Mesh: {fileID: -2254073774553662122, guid: 3bdb7fef339f1874c93bbab979d50848, type: 3}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!224 &1664954945
 RectTransform:
   m_ObjectHideFlags: 0

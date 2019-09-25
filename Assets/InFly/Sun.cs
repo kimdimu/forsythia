@@ -27,7 +27,7 @@ public class Sun : MonoBehaviour
         {
             //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
             GameObject _obj = Instantiate(sun, firstSun.transform.position, firstSun.transform.rotation) as GameObject;
-            _obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
+            //_obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
 
             SunList.Add(_obj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
 
