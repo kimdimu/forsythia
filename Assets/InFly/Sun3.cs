@@ -36,8 +36,8 @@ public class Sun3 : MonoBehaviour
     void Update()
     {
         //x좌표 랜덤으로 지정, 시작 위치 랜덤으로 지정
-        sun.transform.position = new Vector3(Random.Range(460, 600), SunPosition.transform.position.y,
-     SunPosition.transform.position.z + 200);
+     //   sun.transform.position = new Vector3(Random.Range(460, 600), SunPosition.transform.position.y,
+     //SunPosition.transform.position.z + 400f);
 
         sun.transform.position += Vector3.back * speedRan * Time.deltaTime;
 

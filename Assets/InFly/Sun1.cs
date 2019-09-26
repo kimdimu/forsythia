@@ -36,10 +36,11 @@ public class Sun1 : MonoBehaviour
     void Update()
     { 
         //x좌표 랜덤으로 지정, 시작 위치 랜덤으로 지정
-        sun.transform.position = new Vector3(Random.Range(460, 600), SunPosition.transform.position.y,
-     SunPosition.transform.position.z);
+     //   sun.transform.position = new Vector3(Random.Range(460, 600), SunPosition.transform.position.y,
+     //SunPosition.transform.position.z + 400f);
 
         sun.transform.position += Vector3.back * speedRan * Time.deltaTime;
+
         //지정 좌표까지 갔고 닿이지 않았다면
         if (sun.transform.position.z <= -100.0f && !TagSun)
         {
@@ -71,7 +72,7 @@ public class Sun1 : MonoBehaviour
         {
             //x좌표 랜덤으로 지정, 시작 위치 랜덤으로 지정
             sun.transform.position = new Vector3(Random.Range(460, 600), SunPosition.transform.position.y,
-                SunPosition.transform.position.z + 400f);
+                SunPosition.transform.position.z);
             TagSun = false; //IEnRan초마다 (생성될 때마다) 닿이지 않았음으로 초기화
             IsClon = true; //클론 생성되어있음 
         }
