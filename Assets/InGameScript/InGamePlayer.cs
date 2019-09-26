@@ -112,20 +112,34 @@ public class InGamePlayer : MonoBehaviour
             RightJump.SetActive(true); //오른쪽 도약 보이게함
             BirdJump.SetActive(true); //도약 바 보이게함
 
-            //if(IsRightJump && IsLeftJump) //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
+            /* _StartPosition.x = 480, _EndPosition.x = 480
+            //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
+            if(IsRightJump && IsLeftJump)
+            {
+                //성공 영역에서 눌렀으면
+                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 410 ||
+                Handle.transform.position.x >= 580 && Handle.transform.position.x <= EndPosition.x)
+                {
 
+                }
+                //대성공 영역에서 눌렀으면
+                if(Handle.transform.position.x >= 410 && Handle.transform.position.x <= 580)
+                {
+
+                }
+            }*/
             //선택 바의 좌표가 끝나는 좌표보다 크거나 같으면 또는 선택 바의 좌표가 시작 좌표보다 작으면 (빨간 영역 넘어가면)
             if (Handle.transform.position.x >= EndPosition.x || Handle.transform.position.x < StartPosition.x)
             {
                 //(+)인 스피드에 (-)를 곱하여 (-)로 바꿔 왼쪽(<-)으로 움직이게 함
                 //(-)인 스피드에 (-)를 곱하여 (+)로 바꿔 오른쪽(->)으로 움직이게 함
                 speed = speed * (-1.0f);
-                WangBog++; //벗어난 영역 횟수 증가
+               // WangBog++; //벗어난 영역 횟수 증가
             }
             //선택 바 위치 움직이기
             Handle.transform.position = new Vector3(Handle.transform.position.x + speed, Handle.transform.position.y, 0);
-         
-            if(WangBog == 4) //영역 네 번 벗어나면 = 왕복 두 번
+
+            if (WangBog == 4) //영역 네 번 벗어나면 = 왕복 두 번
             {
                 Destroy(_obj.gameObject); //클론 삭제
 
