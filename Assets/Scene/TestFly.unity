@@ -394,8 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyer: {fileID: 1664954938}
-  speed: 100
-  BirdSpeed: 100
+  MoveSpeed: 100
+  BirdSpeed: 120
 --- !u!114 &47548782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4949,7 +4949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plyer: {fileID: 1664954938}
-  speed: 100
+  MoveSpeed: 100
   BirdSpeed: 0
 --- !u!114 &1823760837
 MonoBehaviour:
@@ -5206,7 +5206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7609386fbacd2a4681a3b4aef2d7f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 120
 --- !u!1 &1994771374
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ public class Sun : MonoBehaviour
     //햇살 생성 시키는 함수
     void SunInIt()
     {
-        //새 나는 시간 끝날 때까지
-        for (int i = 0; i < 10; i++)
+        //비행 게이지가 끝날 때까지 생성
+        for (int i = 0; i < Fly.FlyTime; i++)
         {
             ranSphere = Random.Range(0, 5); //0~4까지 랜덤 생성
             ranX = Random.Range(500, 580);

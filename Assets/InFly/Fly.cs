@@ -8,12 +8,12 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject plyer; //움직일 오브젝트
 
-    public float speed; //좌우로 움직일 스피드
+    public float MoveSpeed; //좌우로 움직일 스피드
     public float BirdSpeed; //직진으로 움직일 스피드
 
     bool right, left, IsRight, IsLeft;
 
-    float FlyTime; //비행 게이지 끝나는 시간 (일단 3초로 설정함)
+    public static float FlyTime = 30; //비행 게이지 끝나는 시간
 
     public static bool IsFlyEnd; //비행이 끝났으면
 
@@ -24,19 +24,17 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         IsRight = false;
         IsLeft = false;
         IsFlyEnd = false;
-
-        FlyTime = 5;
     }
     void Update()
     {
-        FlyTime -= Time.deltaTime; //일정한 시간에 따라 감소됨. 1초씩 감소함
+        FlyTime -= Time.deltaTime; //일정한 시간에 따라 감소됨. 0.1f초씩 감소함
 
         //새는 자동으로 계속 앞으로 간다
         plyer.transform.position += Vector3.forward * BirdSpeed * Time.deltaTime;
 
         if (left)
         {
-            plyer.transform.position += Vector3.left * speed * Time.deltaTime;
+            plyer.transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
             //왼쪽 화면으로 나가려고 할 경우
             if (plyer.transform.position.x <= 460)
             {
@@ -44,9 +42,9 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                      plyer.transform.position.z);
             }
         }
-        if(right)
+        if (right)
         {
-            plyer.transform.position += Vector3.right * speed * Time.deltaTime;
+            plyer.transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
             //오른쪽 화면으로 나가려고 할 경우
             if (plyer.transform.position.x >= 600)
             {

@@ -75,9 +75,11 @@ public class InGamePlayer : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     JumpCount++; //점프 횟수 증가
-                                 //해당 발판 위치로 플레이어 옮김. y + 3 한 이유 : 플레이어가 발판 사이에 끼여서 조금 띄움
+                    
+                    //해당 발판 위치로 플레이어 옮김. y + 3 한 이유 : 플레이어가 발판 사이에 끼여서 조금 띄움
                     _Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
-                    GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
+                                                    GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
+                    //StartCoroutine("Sleep"); //해당 초동안 멈추기
                     UpNum++; //발판 개수 증가
 
                     if (JumpCount >= 2) //발판을 두 번 밟으면
@@ -93,8 +95,10 @@ public class InGamePlayer : MonoBehaviour
         if (IsWeak && !IsStrong && IsPutButton && !IsFullUp)
         {
             JumpCount++;
+
             _Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
             GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
+
             UpNum++;
 
             if (JumpCount >= 1)
@@ -163,6 +167,11 @@ public class InGamePlayer : MonoBehaviour
         }
     }
 
+    IEnumerator Sleep()
+    {
+        yield return new WaitForSeconds(0.3f);
+    }
+    
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground") //플레이어가 Ground 태그와 충돌하면
