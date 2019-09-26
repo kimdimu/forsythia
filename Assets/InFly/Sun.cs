@@ -24,6 +24,8 @@ public class Sun : MonoBehaviour
          [0] = 직선 / [1] = 뒤 왼쪽 세개, 앞 오른쪽 세개 / [2] = 앞 왼쪽 세개, 뒤 오른쪽 세개 /
          [3] = 왼쪽에서 오른쪽으로 대각선 / [4] = 오른쪽에서 왼쪽으로 대각선
          */
+
+        //if (SunList[i].transform.position.z )
     }
 
     //햇살 생성 시키는 함수
@@ -32,7 +34,7 @@ public class Sun : MonoBehaviour
         //새 나는 시간 끝날 때까지
         for (int i = 0; i < 10; i++)
         {
-            ranSphere = Random.Range(0, 11); //0~10까지 랜덤 생성
+            ranSphere = Random.Range(0, 5); //0~4까지 랜덤 생성
             ranX = Random.Range(500, 580);
 
             GameObject obj = (GameObject)Instantiate(Sphere[ranSphere], firstground.transform.position, firstground.transform.rotation);
