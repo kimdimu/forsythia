@@ -11,7 +11,7 @@ public class Sun : MonoBehaviour
     List<GameObject> SunList = new List<GameObject>(); //오브젝트 리스트 생성
 
     int ranSphere; //랜덤 [종류] 받아오기 위한 변수
-    int ranX;
+    int ranX; //z좌표 랜덤으로 받기위한 변수
 
     void Start()
     {

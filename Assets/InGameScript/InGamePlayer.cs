@@ -16,7 +16,7 @@ public class InGamePlayer : MonoBehaviour
     int JumpCount = 0; //점프 횟수 카운트
     int UpNum = 0; //밟은 발판 개수 카운트
 
-    public GameObject Ground; //복제 될 물체
+    public static GameObject Ground; //복제 될 물체
     List<GameObject> GroundList = new List<GameObject>(); //오브젝트 리스트 생성
     
     GameObject firstground; //처음 발판의 위치 (발판이 생성될 위치)
