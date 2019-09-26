@@ -35,6 +35,12 @@ public class RandBrunch : MonoBehaviour
         object4.transform.localScale = new Vector3(1206.267f, 367.082f, 491.3162f);
 
 
+        ////스케일을 변환시켜준다.
+        //BranchObject1.transform.localScale = new Vector3(1044.595f, 539.7225f, 539.7225f);
+        //BranchObject2.transform.localScale = new Vector3(809.9556f, 367.082f, 491.3162f);
+        //BranchObject3.transform.localScale = new Vector3(1.904798f, 74.37221f, 4.96139f);
+        //BranchObject4.transform.localScale = new Vector3(1206.267f, 367.082f, 491.3162f);
+
         while (positionCon <= 350)
         {
             Instantiate(tempGO[Random.Range(0, 4)], new Vector3(759.55f, 1190f + positionCon/*이전에 생긴 발판의 y좌표값보다 -0.0364 만큼*/, 0f), Quaternion.Euler(0f, 90f, 0f));
