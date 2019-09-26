@@ -21,10 +21,10 @@ public class LeafPutScript : MonoBehaviour
         CurClock += Time.deltaTime;
 
 
-        if (CurClock > 0.7f)
+        if (CurClock > 1.5f)
         {
-            float RandomXPos = Random.Range(580, 650);
-            float RandomZPos = Random.Range(0, 70);
+            float RandomXPos = Random.Range(400, 700);
+            float RandomZPos = Random.Range(-150, 150);
             float RandomQuat = Random.Range(0, 180);
             float RandomQuat2 = Random.Range(0, 180);
             float RandomQuat3 = Random.Range(0, 180);
