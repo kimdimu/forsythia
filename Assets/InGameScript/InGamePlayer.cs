@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InGamePlayer : MonoBehaviour
 {
-    public Rigidbody Player;
+    public GameObject _Player; //InGame의 player
 
     public bool IsStrong = false; //강하게를 눌렀는지
     public bool IsWeak = false; //약하게를 눌렀는지
@@ -16,9 +17,9 @@ public class InGamePlayer : MonoBehaviour
     int JumpCount = 0; //점프 횟수 카운트
     int UpNum = 0; //밟은 발판 개수 카운트
 
-    public static GameObject Ground; //복제 될 물체
+    public GameObject Ground; //복제 될 물체
     List<GameObject> GroundList = new List<GameObject>(); //오브젝트 리스트 생성
-    
+
     GameObject firstground; //처음 발판의 위치 (발판이 생성될 위치)
 
     GameObject _obj; //생성된 클론
@@ -62,29 +63,37 @@ public class InGamePlayer : MonoBehaviour
     {
         //강하게 눌렀을 때 + 약하게 안 눌렀을 때 + 발판에 닿았을 때 + 도약중이 아닐 때 (중복, 연속, 도중 선택 방지)
         if (IsStrong && !IsWeak && IsPutButton && !IsFullUp)
-        {
-            for(int i = 0; i < 2; i++)
+        { 
+            //클론이 하나 남았는데 강하게를 누를 수 없도록 하기 위함
+            //남은 클론이 하나 이하일 때 강하게를 누르면
+            if (ran - 1 < UpNum)
             {
-                JumpCount++; //점프 횟수 증가
-                //해당 발판 위치로 플레이어 옮김. y + 3 한 이유 : 플레이어가 발판 사이에 끼여서 조금 띄움
-                Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
-                GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
-                UpNum++; //발판 개수 증가
-                //Score = Score * 2; //스코어가 두배로 적용됨
-
-                if (JumpCount >= 2) //발판을 두 번 밟으면
+                IsWeak = true; //약하게가 실행되도록 한다
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
                 {
-                    JumpCount = 0; //점프 횟수를 초기화
-                    IsStrong = false; //강하게 누른 것이 풀림
+                    JumpCount++; //점프 횟수 증가
+                                 //해당 발판 위치로 플레이어 옮김. y + 3 한 이유 : 플레이어가 발판 사이에 끼여서 조금 띄움
+                    _Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
+                    GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
+                    UpNum++; //발판 개수 증가
+
+                    if (JumpCount >= 2) //발판을 두 번 밟으면
+                    {
+                        JumpCount = 0; //점프 횟수를 초기화
+                        IsStrong = false; //강하게 누른 것이 풀림
+                    }
                 }
             }
         }
-
+       
         //약하게 눌렀을 때 + 강하게 안 눌렀을 때 + 발판에 닿았을 때 + 도약중이 아닐 때 (중복, 연속, 도중 선택 방지)
         if (IsWeak && !IsStrong && IsPutButton && !IsFullUp)
         {
             JumpCount++;
-            Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
+            _Player.transform.position = new Vector3(GroundList[UpNum].transform.position.x,
             GroundList[UpNum].transform.position.y + 3, GroundList[UpNum].transform.position.z);
             UpNum++;
 
@@ -120,10 +129,6 @@ public class InGamePlayer : MonoBehaviour
             {
                 Destroy(_obj.gameObject); //클론 삭제
 
-                //처음 발판의 위치로 플레이어 옮김
-                Player.transform.position = new Vector3(Ground.transform.position.x,
-               Ground.transform.position.y + 3, Ground.transform.position.z);
-
                 UpNum = 0; //발판 밟은 개수 초기화
                 LeftJump.SetActive(false); //왼쪽 도약 안보이게함
                 RightJump.SetActive(false); //오른쪽 도약 안보이게함
@@ -133,6 +138,13 @@ public class InGamePlayer : MonoBehaviour
                 //도약중일 땐 못누르게 했는데 왜 눌려져서 true로 바뀌어지는지 모르겠다
                 IsStrong = false;
                 IsWeak = false;
+
+                //처음 발판의 위치로 플레이어 옮김
+                // Player.transform.position = new Vector3(Ground.transform.position.x,
+                //Ground.transform.position.y + 3, Ground.transform.position.z);
+
+                //TestFly 씬으로 가 비행을 시작한다
+                SceneManager.LoadScene("TestFly");
             }
         }
     }

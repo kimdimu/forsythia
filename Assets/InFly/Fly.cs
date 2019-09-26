@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -12,7 +13,9 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     bool right, left, IsRight, IsLeft;
 
-    public static float FlyTime; //비행 게이지 끝나는 시간 (일단 3초로 설정함)
+    float FlyTime; //비행 게이지 끝나는 시간 (일단 3초로 설정함)
+
+    public static bool IsFlyEnd; //비행이 끝났으면
 
     void Start()
     {
@@ -20,8 +23,9 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         left = false;
         IsRight = false;
         IsLeft = false;
+        IsFlyEnd = false;
 
-        FlyTime = 3;
+        FlyTime = 5;
     }
     void Update()
     {
@@ -53,8 +57,8 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //비행 게이지가 모두 떨어지면
         if(FlyTime <= 0)
         {
-            //랜덤 가지로 이동. 일단 TestInGame 씬의 첫 번째 가지(=복제될 가지 오브젝트)로 옮김
-            plyer.transform.position = InGamePlayer.Ground.transform.position;
+            IsFlyEnd = true;
+            SceneManager.LoadScene("TestInGame");
         }
     }
     //오른쪽으로 버튼을 누르면
