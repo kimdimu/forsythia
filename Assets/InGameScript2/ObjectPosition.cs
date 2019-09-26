@@ -1,79 +1,72 @@
 ﻿using System.Collections;
+
 using System.Collections.Generic;
+
 using UnityEngine;
 
-public class ObjectPosition : MonoBehaviour
-{
-    public GameObject emptybranch1;
-    //public GameObject emptybranch2;
-    //public GameObject emptybranch3;
 
-    public GameObject Branch1/*, Branch2, Branch3*/;
+
+public class ObjectPosition : MonoBehaviour
+
+{
+
+    int RandQNum; //가지의 회전 x값을 조정하는 변수 
+
+    public GameObject Branch1;
+
+    List<GameObject> branchList = new List<GameObject> (); //가지객체를 생성하고 관리해줄 리스트 생성
+
+
+
+    public GameObject emptybranch1;
 
     // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(BranchRandomGenerator());
     }
 
 
-
-
-    IEnumerator   BranchRandomGenerator()
+    IEnumerator BranchRandomGenerator()
     {
-        Vector3 pos1;
-        //Vector3 pos2;
-        //Vector3 pos3;
 
-        GameObject[] tempbranch = new GameObject[1];
-
-        tempbranch[0] = emptybranch1;
-        //tempbranch[1] = emptybranch2;
-        //tempbranch[2] = emptybranch3;
-
-
-        //위치값 갱신 ->  위치값 삭제되서 안나옴 어케하면 좋을까 dnlclrkqt!!!!!!!!!!!!
-        pos1 = this.emptybranch1.transform.position;
-        //pos2 = this.emptybranch2.transform.position;
-        //pos3 = this.emptybranch3.transform.position;
+        Vector3 pos1, pos2;
+        bool isTest = true;
 
         while (true)
         {
 
-            //첫번째 가지 생성
-            Instantiate(Branch1, new Vector3(pos1.x, pos1.y, pos1.z), Quaternion.Euler(270f, 90f, -90f));
-
-            // //첫번째 가지 지움
-            // Destroy(Branch1);
-
-            // ////위치값갱신
-            // // pos1 = this.emptybranch1.transform.position;
+            RandQNum = Random.Range(50, 120);//220 ~ 320까지 랜덤으로 숫자 생성
 
 
+            //emptybranch1.transform.position = Branch1.transform.position; // 초기기둥의 위치를 빈오브젝트의 위치로 넣음
+
+            pos1 = this.emptybranch1.transform.position; //빈오브젝트의 위치 = pos1
+            
+
+            for (int i = 0; i < 1; i++)
+            {
+                if(isTest == true)
+                {
+                    GameObject _obj = Instantiate(Branch1, new Vector3(pos1.x , pos1.y , pos1.z), Quaternion.Euler(RandQNum, 90f, -90f)) as GameObject; //오브젝트를 생성하고
+                    branchList.Add(_obj); // 생성된 오브젝트를 branchlist 에 add로 추가.
+
+                    pos2 = branchList[i].transform.position;
+
+
+
+                    Instantiate(Branch1, new Vector3(pos1.x + pos2.x, pos1.y + pos2.y, pos1.z), Quaternion.Euler(RandQNum, 90f, -90f));
+                }
+
+            }
 
             //2초후에
             yield return new WaitForSeconds(2f);
 
 
-            // // //첫번째 가지위에 2번째 가지 생성 악 거지같은 줄긴아ㅓ라ㅣㄴ어리ㅏㄴ엄갸 ㅓㅑㅇ너리ㅏ저ㅑㅐ러다루ㅡ
-            //Instantiate(Branch2, new Vector3(pos1.x, pos1.y, pos1.z), Quaternion.Euler(-110f, 90f, -90f));
-
-            // // //두번째 가지 지움
-            // // Destroy(Branch2);
-
-
-            // //Instantiate(Branch3, new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(-60f, 90f, -90f));
-
-
 
         }
-
-
-    }
-
-
-
-
-
+    }    
 }
 
