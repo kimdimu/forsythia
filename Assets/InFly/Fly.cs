@@ -7,7 +7,8 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public GameObject plyer; //움직일 오브젝트
 
-    public float speed; //움직일 스피드
+    public float speed; //좌우로 움직일 스피드
+    public float BirdSpeed; //직진으로 움직일 스피드
 
     bool right, left, IsRight, IsLeft;
 
@@ -20,7 +21,10 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     void Update()
     {
-        if(left)
+        //새는 자동으로 계속 앞으로 간다
+        plyer.transform.position += Vector3.forward * BirdSpeed * Time.deltaTime;
+
+        if (left)
         {
             plyer.transform.position += Vector3.left * speed * Time.deltaTime;
             //왼쪽 화면으로 나가려고 할 경우
