@@ -7,6 +7,7 @@ public class Sun : MonoBehaviour
     public GameObject[] Sphere; //복제 될 햇살 [종류]
     GameObject firstground; //처음 햇살 생성 위치
 
+    GameObject obj; //클론 받아오는 오브젝트
     List<GameObject> SunList = new List<GameObject>(); //오브젝트 리스트 생성
 
     int ranSphere; //랜덤 [종류] 받아오기 위한 변수
@@ -25,7 +26,8 @@ public class Sun : MonoBehaviour
          [3] = 왼쪽에서 오른쪽으로 대각선 / [4] = 오른쪽에서 왼쪽으로 대각선
          */
 
-        //if (SunList[i].transform.position.z )
+        //플레이어가 해당 클론의 마지막 위치를 지났고 플레이어에게 닿이지 않았다면 해당 클론을 지운다
+        //지우는건 못하겠는걸요....
     }
 
     //햇살 생성 시키는 함수
@@ -37,14 +39,14 @@ public class Sun : MonoBehaviour
             ranSphere = Random.Range(0, 5); //0~4까지 랜덤 생성
             ranX = Random.Range(500, 580);
 
-            GameObject obj = (GameObject)Instantiate(Sphere[ranSphere], firstground.transform.position, firstground.transform.rotation);
+            obj = (GameObject)Instantiate(Sphere[ranSphere], firstground.transform.position, firstground.transform.rotation);
             obj.transform.localScale = new Vector3(4f, 4f, 4f); //콜론 크기 변경
 
             SunList.Add(obj);
 
             //x좌표는 랜덤, 생성 위치의 y좌표, z좌표는 계속해서 +500 (앞 햇살 나열 뒤에 생성되도록)
             SunList[i].transform.position = new Vector3(ranX,
-               firstground.transform.position.y, transform.position.z + + 500 * i);
+               firstground.transform.position.y, transform.position.z + 500 * i);
 
             ////만약 오른쪽 화면을 침범하는 햇살 배열이라면
             //if((ranSphere == 2 || ranSphere == 3) && SunList[i].transform.position.x >= 550)

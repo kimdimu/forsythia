@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\InFly\Fly.cs" />
+    <Compile Include="Assets\InFly\HitPlayer.cs" />
     <Compile Include="Assets\InFly\InFlyCamera.cs" />
     <Compile Include="Assets\InFly\Sun.cs" />
     <Compile Include="Assets\InGameScript\ClickButton.cs" />
