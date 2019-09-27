@@ -5,30 +5,34 @@ using UnityEngine;
 public class ClickButton : MonoBehaviour
 {
     public GameObject target;
-    InGamePlayer playerScript;
+
+    public static bool IsStrong = false; //강하게를 눌렀는지
+    public static bool IsWeak = false; //약하게를 눌렀는지
+    public static bool IsLeftJump = false; //왼쪽 도약 키를 눌렀는지
+    public static bool IsRightJump = false; //오른쪽 도약 키를 눌렀는지
 
     void Start()
     {
-        playerScript = target.GetComponent<InGamePlayer>();
+       
     }
     
     public void Strong()
     {
-        playerScript.IsStrong = true;
+        IsStrong = true;
     }
 
     public void Weak()
     {
-        playerScript.IsWeak = true;
+        IsWeak = true;
     }
 
     public void LeftJump()
     {
-        playerScript.IsLeftJump = true;
+       IsLeftJump = true;
     }
 
     public void RightJump()
     {
-        playerScript.IsRightJump = true;
+       IsRightJump = true;
     }
 }

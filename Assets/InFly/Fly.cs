@@ -13,7 +13,7 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     bool right, left, IsRight, IsLeft;
 
-    public static float FlyTime = 30; //비행 게이지 끝나는 시간
+    public static float FlyTime = 120; //비행 게이지 끝나는 시간
 
     public static bool IsFlyEnd; //비행이 끝났으면
 
