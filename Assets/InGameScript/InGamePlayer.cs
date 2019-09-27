@@ -35,12 +35,17 @@ public class InGamePlayer : MonoBehaviour
 
     int ran; //랜덤 생성되는 발판의 개수 저장
 
+    public static bool BigSuccess; //대성공
+    public static bool Success; //성공
+
     void Start()
     {
         ClickButton.IsStrong = false;
         ClickButton.IsWeak = false;
         ClickButton.IsLeftJump = false;
         ClickButton.IsRightJump = false;
+        BigSuccess = false;
+        Success = false;
 
         LeftJump.SetActive(false); //왼쪽 도약 안보이게함
         RightJump.SetActive(false); //오른쪽 도약 안보이게함
@@ -85,21 +90,34 @@ public class InGamePlayer : MonoBehaviour
             RightJump.SetActive(true); //오른쪽 도약 보이게함
             BirdJump.SetActive(true); //도약 바 보이게함
 
-            /* _StartPosition.x = 480, _EndPosition.x = 480
+            /* 대성공_StartPosition.x = 480, 대성공_EndPosition.x = 480, 성공_StartPosition.x = 340, 성공_EndPosition.x = 720
             //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
             if(IsRightJump && IsLeftJump)
             {
-                //성공 영역에서 눌렀으면
-                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 410 ||
-                Handle.transform.position.x >= 580 && Handle.transform.position.x <= EndPosition.x)
+                //실패 영역에서 눌렀으면
+                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 340) ||
+                Handle.transform.position.x >= 720 && Handle.transform.position.x <= EndPosition.x))
                 {
-
+                    //게임 종료
+                }
+                //성공 영역에서 눌렀으면
+                if((Handle.transform.position.x >= 340 && Handle.transform.position.x <= 410) ||
+                (Handle.transform.position.x >= 580 && Handle.transform.position.x <= 720))
+                {
+                    SceneManager.LoadScene("TestFly"); //Fly 시작
+                    Success = true;
                 }
                 //대성공 영역에서 눌렀으면
                 if(Handle.transform.position.x >= 410 && Handle.transform.position.x <= 580)
                 {
-
+                    SceneManager.LoadScene("TestFly");
+                    BigSuccess = true;
                 }
+            }
+            //오른쪽 도약 키, 왼쪽 도약 키를 같이 안 눌렀으면
+            if((IsRightJump && !IsLeftJump) || (!IsRightJump && IsLeftJump))
+            {
+                //게임 종료
             }*/
             //선택 바의 좌표가 끝나는 좌표보다 크거나 같으면 또는 선택 바의 좌표가 시작 좌표보다 작으면 (빨간 영역 넘어가면)
             if (Handle.transform.position.x >= EndPosition.x || Handle.transform.position.x < StartPosition.x)

@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class HitPlayer : MonoBehaviour
 {
+    int SunScore = 50;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player") //클론이 Player 태그와 충돌하면
         {
-            //Debug.Log("닿임");
-            //점수 두배로 얻음
+            if(InGamePlayer.BigSuccess)
+            {
+                //score = score + (SunScore * 1.5f) 
+            }
+            if (InGamePlayer.Success)
+            {
+                //score = score + SunScore;
+            }
         }
     }
 }

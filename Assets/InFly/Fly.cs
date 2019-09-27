@@ -13,7 +13,7 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     bool right, left, IsRight, IsLeft;
 
-    public static float FlyTime = 120; //비행 게이지 끝나는 시간
+    public static float FlyTime = 10; //비행 게이지 끝나는 시간
 
     public static bool IsFlyEnd; //비행이 끝났으면
 
@@ -27,7 +27,7 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     void Update()
     {
-        FlyTime -= Time.deltaTime; //일정한 시간에 따라 감소됨. 0.1f초씩 감소함
+        FlyTime -= Time.deltaTime; //일정한 시간에 따라 감소됨. 프레임 따라 0.1f초씩 감소함
 
         //새는 자동으로 계속 앞으로 간다
         plyer.transform.position += Vector3.forward * BirdSpeed * Time.deltaTime;
