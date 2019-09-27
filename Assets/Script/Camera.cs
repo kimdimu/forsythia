@@ -4,22 +4,67 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public float MoveSpeed;     // 플레이어를 따라오는 카메라 맨의 스피드.
 
-    // 비공개
-    private Transform Target;   // 플레이어의 트랜스 폼.
-    private Vector3 Pos;        // 자신의 위치.
+    /*public GameObject Player;
 
-    void Start()
+    public float offsetX = 15f;
+    public float offsetY = 10f;
+    public float offsetZ = -200f; //객체와 카메라 사이의 거리
+
+    public float ZoomSpeed = 10f;     //줌인아웃 속도
+
+
+    Vector3 CameraPos;
+
+    private Camera mainCamera;
+    private float distance;
+
+    private void Start()
     {
-        // Player라는 태그를 가진 오브젝트의 transform을 가져온다.
+
+    }
+
+    void Zoom()
+    {
+
+        distance = Input.GetAxis("Mouse ScrollWheel") * -1 * ZoomSpeed;
+
+        if (distance != 0)
+        {
+            offsetZ += distance;
+            Debug.Log(distance);
+        }
+    }
+
+    private void Update()
+    {
+        Zoom();
+    }
+
+    private void LateUpdate()
+    {
+        CameraPos.x = Player.transform.position.x + offsetX;
+        CameraPos.y = Player.transform.position.y + offsetY;
+        CameraPos.z = Player.transform.position.z + offsetZ;
+
+        transform.position = Vector3.Lerp(transform.position, CameraPos, 10 * Time.deltaTime);
+    }*/ // 졸졸 잘따라다니는 카메라 셋팅
+
+
+    public float MoveSpeed;
+
+    private Transform Target;
+    private Vector3 Pos;
+
+    private void Start()
+    {
         Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // 플레이어를 따라다님.
-    void Update()
+    private void Update()
     {
         Pos = transform.position;
         transform.position += (Target.position - Pos) * MoveSpeed;
     }
+
 }

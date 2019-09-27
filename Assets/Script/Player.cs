@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Vector2 StartPos;
     Vector2 LastPos;    
     public GameObject Target;
-    public GameObject MainCam;
+    //public GameObject MainCam;
     // SP와 LP 사이의 거리가 일정 이상일 경우 인게임 화면 
 
     void Update()

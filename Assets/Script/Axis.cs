@@ -24,8 +24,16 @@ public class Axis : MonoBehaviour
 
     void Update()
     {
-        Zoom();
-        CameraRotation();
+        DisCamera();
+        //Zoom();
+        //CameraRotation();
+    }
+
+    void DisCamera()
+    {
+        AxisVec = transform.forward * -1;
+        AxisVec *= Distance;
+        MainCamera.position = transform.position + AxisVec;
     }
 
     // 카메라 줌.
@@ -39,27 +47,27 @@ public class Axis : MonoBehaviour
         MainCamera.position = transform.position + AxisVec;
     }
 
-    // 카메라 회전.
-    void CameraRotation()
-    {
-        if (transform.rotation != TargetRotation)
-            transform.rotation = Quaternion.Slerp(transform.rotation, TargetRotation, RotationSpeed * Time.deltaTime);
+    //// 카메라 회전.
+    //void CameraRotation()
+    //{
+    //    if (transform.rotation != TargetRotation)
+    //        transform.rotation = Quaternion.Slerp(transform.rotation, TargetRotation, RotationSpeed * Time.deltaTime);
 
-        if (Input.GetMouseButton(1))
-        {
-            // 값을 축적.
-            Gap.x += Input.GetAxis("Mouse Y") * RotationSpeed * -1;
-            Gap.y += Input.GetAxis("Mouse X") * RotationSpeed;
+    //    if (Input.GetMouseButton(1))
+    //    {
+    //        // 값을 축적.
+    //        Gap.x += Input.GetAxis("Mouse Y") * RotationSpeed * -1;
+    //        Gap.y += Input.GetAxis("Mouse X") * RotationSpeed;
 
-            // 카메라 회전범위 제한.
-            Gap.x = Mathf.Clamp(Gap.x, -5f, 85f);
-            // 회전 값을 변수에 저장.
-            TargetRotation = Quaternion.Euler(Gap);
+    //        // 카메라 회전범위 제한.
+    //        Gap.x = Mathf.Clamp(Gap.x, -5f, 85f);
+    //        // 회전 값을 변수에 저장.
+    //        TargetRotation = Quaternion.Euler(Gap);
 
-            // 카메라벡터 객체에 Axis객체의 x,z회전 값을 제외한 y값만을 넘긴다.
-            Quaternion q = TargetRotation;
-            q.x = q.z = 0;
-            CameraVector.transform.rotation = q;
-        }
-    }
+    //        // 카메라벡터 객체에 Axis객체의 x,z회전 값을 제외한 y값만을 넘긴다.
+    //        Quaternion q = TargetRotation;
+    //        q.x = q.z = 0;
+    //        CameraVector.transform.rotation = q;
+    //    }
+    //}
 }
