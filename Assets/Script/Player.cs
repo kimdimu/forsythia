@@ -9,7 +9,13 @@ public class Player : MonoBehaviour
     private Vector3 moveDir;
     float SwipeLength;
     Vector2 StartPos;
+<<<<<<< HEAD
     Vector2 LastPos;
+=======
+    Vector2 LastPos;    
+    public GameObject Target;
+    public GameObject MainCam;
+>>>>>>> parent of 702ab88... Camera2
     // SP와 LP 사이의 거리가 일정 이상일 경우 인게임 화면 
     private GameObject target;
 
