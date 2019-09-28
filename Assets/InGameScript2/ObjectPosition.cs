@@ -18,7 +18,8 @@ public class ObjectPosition : MonoBehaviour
     public GameObject BranchObject3; //꽃
     public GameObject BranchObject4; //시든가지
 
-    public GameObject BranchFly; //도약발판
+
+    public GameObject FlyBranch; //도약발판
 
     //가지를 랜덤으로 생성할 오브젝트
     public GameObject RandomBranch_Right; //오른쪽
@@ -53,7 +54,8 @@ public class ObjectPosition : MonoBehaviour
     // 가지예외체크를 위한 이전가지의 종류값받아올 변수
     int PreNum = 7;
 
-    bool test = false;
+
+    bool TestFlag = false;
 
     // Start is called before the first frame update
     void Start()
@@ -105,9 +107,8 @@ public class ObjectPosition : MonoBehaviour
         BranchObject3.transform.localScale = new Vector3(1148.665f, 615.4145f, 295.8598f);
         BranchObject4.transform.localScale = new Vector3(1148.665f, 615.4145f, 295.8598f);
 
-        BranchFly.transform.localScale = new Vector3(2, 2, 2);
-
-        //=================================================// 
+        FlyBranch.transform.localScale = new Vector3(4, 4, 40);
+        //=================================================//
 
         //pos1과 pos2 ,pos3를 벡터로 선언
         Vector3 pos1, pos2, pos3;
@@ -134,22 +135,24 @@ public class ObjectPosition : MonoBehaviour
             //가지생성방향 전환을 위한 랜덤값 생성
             int ChangeDir = Random.Range(0, 2);
 
+
+
             // 가지종류전환을 위한 랜덤값생성
             // 예외 : 1번이 생성된다음 2번나올수 없고, 2번 다음 2번 나올수 없고,  2번 다음 1번 나올수 없다.
 
 
-
+            //가지가 만들어졌는지 체크 -> 1오브젝트 위치에 1개만 만들수잇도록한다.
             bool checkCreate = false;
 
-            if (LimitTime < 0)
-                test = true;
-
-
+            //한번돔
             for (int i = 0; i < 1; i++)
             {
+                //제한시간이 0보다 크거나 같을때 까지만
                 if (LimitTime >= 0)
                 {
+
                     /*==========================오른쪽에 가지생성=========================*/
+                    //가지가 생성되지않았을때 오른쪽에 가지를 생성한다,
                     if (ChangeDir == 0 && checkCreate == false)
                     {
 
@@ -159,6 +162,7 @@ public class ObjectPosition : MonoBehaviour
                             //랜덤값을 다시 계산하고
                             RandBranchIndex = Random.Range(0, 2);
                             //Debug.Log("가지번호 : " + RandBranchIndex);
+
                             //배열0~1까지의 오브젝트를 랜덤생성한다. 위치는 RightBranchPos위치 
                             Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(0f, 90f, 0f));
                             checkCreate = true;
@@ -204,6 +208,7 @@ public class ObjectPosition : MonoBehaviour
                     }
 
                     /*==========================왼쪽에 가지생성=========================*/
+                    //가지가 생성되지않았을 경우 왼쪽에 가지를 생성한다.
                     if (ChangeDir == 1 && checkCreate == false)
                     {
                         //만약 이전에 시든가지가 생성되었었다면
@@ -256,13 +261,26 @@ public class ObjectPosition : MonoBehaviour
                         }
 
                     }
+
                 }
 
-                else if (test == true)
+                //제한 시간이 0미만이되면
+                else if (LimitTime < 0)
                 {
-                    //도약발판한번만 생성되게 만들ㅇ어야함.
-                    Instantiate(BranchFly, new Vector3(pos3.x, pos3.y, pos3.z), Quaternion.Euler(-180f, 90f, 0f));
-                    test = false;
+                    //방향이 오른쪽일때
+                    if (ChangeDir == 0 && TestFlag == false) 
+                    {
+                        //도약발판을 생성한다.
+                        Instantiate(FlyBranch, new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(0f, 90f, 0f));
+                        TestFlag = true;
+                    }
+
+                    else if(ChangeDir == 1 && TestFlag == false)
+                    {
+                        //도약발판을 생성한다.
+                        Instantiate(FlyBranch, new Vector3(pos3.x, pos3.y, pos3.z), Quaternion.Euler(-180f, 90f, 0f));
+                        TestFlag = true;
+                    }
                 }
 
 
@@ -275,9 +293,6 @@ public class ObjectPosition : MonoBehaviour
 
                 // 생성된 오브젝트를 branchlist 에 add로 추가.
                 branchList.Add(_obj);
-
-                
-
 
 
             }
