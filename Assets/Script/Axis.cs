@@ -25,7 +25,7 @@ public class Axis : MonoBehaviour
     void Zoom()
     {
         Distance += Input.GetAxis("Mouse ScrollWheel") * ZoomSpeed * -1;
-        Distance = Mathf.Clamp(Distance, 5f, 20f);
+        Distance = Mathf.Clamp(Distance, 5f, 110f);
 
         AxisVec = transform.forward * -1;
         AxisVec *= Distance;
