@@ -4,42 +4,67 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-<<<<<<< HEAD
-    public Transform target;    //추적할 타겟
-    public float dist = 90f;    //카메라와의 거리
-    public float height = 70f;   //카메라의 높이
-    public float dampRotate = 5f;   //회전
 
-    private Transform tr;
+    /*public GameObject Player;
 
-    void Start()
+    public float offsetX = 15f;
+    public float offsetY = 10f;
+    public float offsetZ = -200f; //객체와 카메라 사이의 거리
+
+    public float ZoomSpeed = 10f;     //줌인아웃 속도
+
+
+    Vector3 CameraPos;
+
+    private Camera mainCamera;
+    private float distance;
+
+    private void Start()
     {
-        tr = GetComponent<Transform>();
+
     }
 
-=======
-    public float MoveSpeed;     // 플레이어를 따라오는 카메라 맨의 스피드.
-
-    // 비공개
-    private Transform Target;   // 플레이어의 트랜스 폼.
-    private Vector3 Pos;        // 자신의 위치.
-
-    void Start()
+    void Zoom()
     {
-        // Player라는 태그를 가진 오브젝트의 transform을 가져온다.
+
+        distance = Input.GetAxis("Mouse ScrollWheel") * -1 * ZoomSpeed;
+
+        if (distance != 0)
+        {
+            offsetZ += distance;
+            Debug.Log(distance);
+        }
+    }
+
+    private void Update()
+    {
+        Zoom();
+    }
+
+    private void LateUpdate()
+    {
+        CameraPos.x = Player.transform.position.x + offsetX;
+        CameraPos.y = Player.transform.position.y + offsetY;
+        CameraPos.z = Player.transform.position.z + offsetZ;
+
+        transform.position = Vector3.Lerp(transform.position, CameraPos, 10 * Time.deltaTime);
+    }*/ // 졸졸 잘따라다니는 카메라 셋팅
+
+
+    public float MoveSpeed;
+
+    private Transform Target;
+    private Vector3 Pos;
+
+    private void Start()
+    {
         Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // 플레이어를 따라다님.
->>>>>>> parent of 702ab88... Camera2
-    void Update()
+    private void Update()
     {
-        //카메라 y 축을 타겟의 y축 회전각도로 부드럽게 회전
-        float currYAngle = Mathf.LerpAngle(tr.eulerAngles.y, target.eulerAngles.y,dampRotate * Time.deltaTime);
-        //쿼티니언으로 변경
-        Quaternion rot = Quaternion.Euler(0, currYAngle, 0);
-        //카메라 위치 설정후 타겟바라보게하기
-        tr.position = target.position - (rot * Vector3.forward * dist) + (Vector3.up * height);
-        tr.LookAt(target);
+        Pos = transform.position;
+        transform.position += (Target.position - Pos) * MoveSpeed;
     }
+
 }
