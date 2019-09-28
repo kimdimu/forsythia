@@ -9,51 +9,30 @@ public class Player : MonoBehaviour
     private Vector3 moveDir;
     float SwipeLength;
     Vector2 StartPos;
-<<<<<<< HEAD
-    Vector2 LastPos;
-=======
     Vector2 LastPos;    
     public GameObject Target;
-    public GameObject MainCam;
->>>>>>> parent of 702ab88... Camera2
+    //public GameObject MainCam;
     // SP와 LP 사이의 거리가 일정 이상일 경우 인게임 화면 
-    private GameObject target;
-
-    private GameObject GetClickedObject()
-    {
-        RaycastHit hit;
-        GameObject target = null;
-        Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
-        //클릭 주변에 객체들을 체크 
-        if (true == (Physics.Raycast(ray.origin, ray.direction * 10, out hit)))
-        {
-            target = hit.collider.gameObject;
-        }
-        return target;
-    }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))  //캐릭터의 콜라이더 박스안에 있는지 
         {
-            target = GetClickedObject();
-            if (target.Equals(gameObject))
+            if (Ray.Equals(Target.transform.position, Input.mousePosition))
             {
+                Debug.Log(Target.transform.localPosition);
                 this.StartPos = Input.mousePosition;
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (target.Equals(gameObject))
-            {
-                this.LastPos = Input.mousePosition;
-                SwipeLength = LastPos.x - StartPos.x;
-            }
+            this.LastPos = Input.mousePosition;
+            SwipeLength = LastPos.x - StartPos.x;
         }
-        Debug.Log(SwipeLength);
-        if(SwipeLength >= 5 || SwipeLength <= - 5)
+        //Debug.Log(SwipeLength);
+        if (SwipeLength >= 5 || SwipeLength <= -5)
         {
-            SceneManager.LoadScene("GamePlay");
+            //SceneManager.LoadScene("GamePlay");
 
         }
 
@@ -69,10 +48,8 @@ public class Player : MonoBehaviour
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
     }
 
-   
-
     void FixedUpdate()
     {
-       // rigidbody.MovePosition(rigidbody.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
+        // rigidbody.MovePosition(rigidbody.position + transform.TransformDirection(moveDir) * moveSpeed * Time.deltaTime);
     }
 }
