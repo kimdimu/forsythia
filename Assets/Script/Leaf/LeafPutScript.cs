@@ -19,8 +19,6 @@ public class LeafPutScript : MonoBehaviour
     void Update()
     {
         CurClock += Time.deltaTime;
-
-
         if (CurClock > 1.5f)
         {
             CreateLeaf();
@@ -44,7 +42,7 @@ public class LeafPutScript : MonoBehaviour
             var o = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
             iCount++;
             Destroy(o, 10.0f);
-            if (iCount >= 100) // 100개가 넘으면 삭제 속도 빠르게 ㄱㄱ 
+            if (iCount >= 100) // 100개가 넘으면 삭제 속도 빠르게 ㄱㄱ 추가하자 
                 iCount = 0;
         }
     }

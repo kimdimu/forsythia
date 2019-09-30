@@ -18,6 +18,8 @@ public class CameraMan : MonoBehaviour
     void Update()
     {
         Pos = transform.position;
+        Pos.y -= 10;
+        Pos.x += 10;
         transform.position += (Target.position - Pos) * MoveSpeed * Time.deltaTime;
 
 
