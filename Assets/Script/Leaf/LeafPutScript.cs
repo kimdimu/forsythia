@@ -6,6 +6,9 @@ using UnityEngine;
 public class LeafPutScript : MonoBehaviour
 {
     public GameObject Leaf;
+    public float fCreateSpeed; //= 1.5f;
+    public float fDeleteSpeed; // =10.0f;
+
     private int iCount;
     private float CurClock;
     // Start is called before the first frame update
@@ -19,7 +22,7 @@ public class LeafPutScript : MonoBehaviour
     void Update()
     {
         CurClock += Time.deltaTime;
-        if (CurClock > 1.5f)
+        if (CurClock > fCreateSpeed)
         {
             CreateLeaf();
             CreateLeafSecond();
@@ -41,8 +44,8 @@ public class LeafPutScript : MonoBehaviour
         {
             var o = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
             iCount++;
-            Destroy(o, 10.0f);
-            if (iCount >= 100) // 100개가 넘으면 삭제 속도 빠르게 ㄱㄱ 추가하자 
+            Destroy(o, fDeleteSpeed);
+            if (iCount >= 100) 
                 iCount = 0;
         }
     }
@@ -59,7 +62,7 @@ public class LeafPutScript : MonoBehaviour
         {
             iCount++;
             var p = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat2, RandomQuat, RandomQuat3));
-            Destroy(p, 10.0f);
+            Destroy(p, fDeleteSpeed);
 
         }
     }
@@ -76,7 +79,7 @@ public class LeafPutScript : MonoBehaviour
         {
             iCount++;
             var q = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat2, RandomQuat, RandomQuat3));
-            Destroy(q, 10.0f);
+            Destroy(q, fDeleteSpeed);
 
         }
     }
@@ -86,3 +89,4 @@ public class LeafPutScript : MonoBehaviour
 //일정시간 지나면 삭제 
 //회전 Quaternion을 바꿔줘야함
 // 흩날리도록
+
