@@ -9,16 +9,32 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject player; //움직일 오브젝트
     public Rigidbody _player;
 
+    bool right, left;
+
     float _Time;
     //public static float GetSpeedTime;
 
     void Start()
     {
         _player.GetComponent<Rigidbody>();
+        right = false;
+        left = false;
     }
 
     void Update()
     {
+        //왼쪽 화면으로 나가려고 할 경우
+        if (player.transform.position.x <= 460)
+            player.transform.position = new Vector3(460, player.transform.position.y, player.transform.position.z);
+        //오른쪽 화면으로 나가려고 할 경우
+        if (player.transform.position.x >= 600)
+            player.transform.position = new Vector3(600, player.transform.position.y, player.transform.position.z);
+
+        if(right)
+            _player.AddForce(Vector3.right * TestFly.MoveSpeed);
+        if(left)
+            _player.AddForce(Vector3.left * TestFly.MoveSpeed);
+
         //GetSpeedTime += Time.deltaTime; //일정한 시간에 따라 증가함
 
         //시작하고 3초동안은 빠르게 나아간다
@@ -30,39 +46,31 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     //오른쪽으로 버튼을 누르면
     public void RightFly()
     {
-        if (TestFly.right)
-        {
-            Debug.Log("오른쪽");
-            //_player.AddForce(new Vector3(player.transform.position.x, player.transform.position.y,
-            //    player.transform.position.z * TestFly.MoveSpeed));
-            _player.AddForce(Vector3.right * TestFly.MoveSpeed);
-            //_player.AddForce(Vector3.right * TestFly.MoveSpeed);
-            //player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
-        }
+        right = true;
+        //player.transform.position += Vector3.right * TestFly.MoveSpeed * Time.deltaTime;
     }
     //왼쪽으로 버튼을 누르면
     public void LeftFly()
     {
-        if (TestFly.left)
-        {
-            Debug.Log("왼쪽");
-            //_player.AddForce(new Vector3(player.transform.position.x, player.transform.position.y,
-            //    player.transform.position.z * -1 * TestFly.MoveSpeed));
-            _player.AddForce(Vector3.left * TestFly.MoveSpeed);
-            //_player.AddForce(Vector3.left * TestFly.MoveSpeed);
-            //player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
-        }
+        left = true;
+        // player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
+    }
+    public void OffRightFly()
+    {
+        right = false;
+    }
+    public void OffLeftFly()
+    {
+        left = false;
     }
     //버튼 누르는 동안
     public void OnPointerDown(PointerEventData eventData)
     {
-        TestFly.right = true;
-        TestFly.left = true;
+
     }
     //버튼에서 손을 떼면
     public void OnPointerUp(PointerEventData eventData)
     {
-        TestFly.right = false;
-        TestFly.left = false;
+
     }
 }

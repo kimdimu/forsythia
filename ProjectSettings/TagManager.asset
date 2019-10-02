@@ -7,14 +7,6 @@ TagManager:
   - Ground
   - MoveSun
   - Sun
-  - Cloud1
-  - Cloud2
-  - Cloud3
-  - Cloud4
-  - Cloud5
-  - Cloud6
-  - Cloud7
-  - Cloud8
   layers:
   - Default
   - TransparentFX

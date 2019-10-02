@@ -23,7 +23,7 @@ public class CloudHitPlayer : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player") //구름링이 Player 태그와 충돌하면
         {

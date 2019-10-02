@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sun : MonoBehaviour
 {
     public GameObject Sphere; //복제 될 햇살
-    public GameObject[] firstground; //처음 햇살 생성 위치
+    public GameObject[] firstground; //구름링 생성 위치
 
     GameObject obj; //클론 받아오는 오브젝트
     List<GameObject> SunList = new List<GameObject>(); //오브젝트 리스트 생성
@@ -33,8 +33,8 @@ public class Sun : MonoBehaviour
         //세 개만 생성
         for (int i = 0; i < 3; i++)
         {
-            ranCloud = Random.Range(0, 9);
-
+            ranCloud = Random.Range(0, 8);
+            Debug.Log(ranCloud);
             //obj = (GameObject)Instantiate(Sphere[ranSph], firstground.transform.position, firstground.transform.rotation);
             obj = (GameObject)Instantiate(Sphere, firstground[ranCloud].transform.position, firstground[ranCloud].transform.rotation);
             obj.transform.localScale = new Vector3(35f, 35f, 5f); //구름링 클론 크기 변경
