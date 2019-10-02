@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InFly\CloudHitPlayer.cs" />
     <Compile Include="Assets\InFly\Fly.cs" />
     <Compile Include="Assets\InFly\HitPlayer.cs" />
     <Compile Include="Assets\InFly\InFlyCamera.cs" />
