@@ -6,94 +6,63 @@ using UnityEngine.SceneManagement;
 
 public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject plyer; //움직일 오브젝트
+    public GameObject player; //움직일 오브젝트
+    public Rigidbody _player;
 
-    public float MoveSpeed; //좌우로 움직일 스피드
-    public static float BirdSpeed = 100; //직진으로 움직일 스피드
-
-    bool right, left, IsRight, IsLeft;
-
-    public static float FlyTime = 20; //비행 게이지 끝나는 시간
-    public static bool IsFlyEnd; //비행이 끝났으면
-
+    float _Time;
     //public static float GetSpeedTime;
 
     void Start()
     {
-        right = false;
-        left = false;
-        IsRight = false;
-        IsLeft = false;
-        IsFlyEnd = false;
+        _player.GetComponent<Rigidbody>();
     }
+
     void Update()
     {
-        Debug.Log("게임 진행 시간 : " + FlyTime);
         //GetSpeedTime += Time.deltaTime; //일정한 시간에 따라 증가함
-        FlyTime -= Time.deltaTime; //일정한 시간에 따라 감소됨
 
-        //새는 자동으로 계속 앞으로 간다
-        plyer.transform.position += Vector3.forward * BirdSpeed * Time.deltaTime;
         //시작하고 3초동안은 빠르게 나아간다
         //if(GetSpeedTime >= 0 && GetSpeedTime <= 3.0f)
         //{
         //    plyer.transform.position += Vector3.forward * 100 * Time.deltaTime;
         //}
-        if (left)
-        {
-            plyer.transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
-            //왼쪽 화면으로 나가려고 할 경우
-            if (plyer.transform.position.x <= 460)
-            {
-                plyer.transform.position = new Vector3(460, plyer.transform.position.y,
-                     plyer.transform.position.z);
-            }
-        }
-        if (right)
-        {
-            plyer.transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
-            //오른쪽 화면으로 나가려고 할 경우
-            if (plyer.transform.position.x >= 600)
-            {
-                plyer.transform.position = new Vector3(600, plyer.transform.position.y,
-                     plyer.transform.position.z);
-            }
-        }
-        //비행 게이지가 모두 떨어지면
-        if(FlyTime <= 0)
-        {
-            IsFlyEnd = true;
-            SceneManager.LoadScene("TestInGame");
-        }
     }
     //오른쪽으로 버튼을 누르면
     public void RightFly()
     {
-        IsRight = true;
+        if (TestFly.right)
+        {
+            Debug.Log("오른쪽");
+            //_player.AddForce(new Vector3(player.transform.position.x, player.transform.position.y,
+            //    player.transform.position.z * TestFly.MoveSpeed));
+            _player.AddForce(Vector3.right * TestFly.MoveSpeed);
+            //_player.AddForce(Vector3.right * TestFly.MoveSpeed);
+            //player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
+        }
     }
-    //왼쪽으로 버튼을 누르면 
+    //왼쪽으로 버튼을 누르면
     public void LeftFly()
     {
-        IsLeft = true;
+        if (TestFly.left)
+        {
+            Debug.Log("왼쪽");
+            //_player.AddForce(new Vector3(player.transform.position.x, player.transform.position.y,
+            //    player.transform.position.z * -1 * TestFly.MoveSpeed));
+            _player.AddForce(Vector3.left * TestFly.MoveSpeed);
+            //_player.AddForce(Vector3.left * TestFly.MoveSpeed);
+            //player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
+        }
     }
     //버튼 누르는 동안
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(IsRight)
-        {
-            right = true;
-        }
-        if (IsLeft)
-        {
-            left = true;
-        }
+        TestFly.right = true;
+        TestFly.left = true;
     }
     //버튼에서 손을 떼면
     public void OnPointerUp(PointerEventData eventData)
     {
-        right = false;
-        left = false;
-        IsRight = false;
-        IsLeft = false;
+        TestFly.right = false;
+        TestFly.left = false;
     }
 }

@@ -10,9 +10,7 @@ public class Sun : MonoBehaviour
     GameObject obj; //클론 받아오는 오브젝트
     List<GameObject> SunList = new List<GameObject>(); //오브젝트 리스트 생성
 
-    int ranX; //z좌표 랜덤으로 받기 위한 변수
-    int ranSph; //구름링 + 햇살
-    int CloudSun; //구름링 + 햇살 개수 증가
+    int ranCloud; //구름링 위치 랜덤 지정
 
     void Start()
     {
@@ -23,7 +21,7 @@ public class Sun : MonoBehaviour
     void Update()
     {
         //만약 비행 게이지가 0이 되어 비행이 끝나면
-        if(Fly.IsFlyEnd == true)
+        if(TestFly.IsFlyEnd == true)
         {
             Destroy(obj.gameObject); //클론을 지운다
         }
@@ -32,22 +30,19 @@ public class Sun : MonoBehaviour
     //햇살 생성 시키는 함수
     void SunInIt()
     {
-        //비행 게이지가 끝날 때까지 생성. Fly.FlyTime
         //세 개만 생성
         for (int i = 0; i < 3; i++)
         {
-            //ranSph = Random.Range(0, 2);
-            //ranX = Random.Range(460, 600);
-            ranX = Random.Range(0, 9);
+            ranCloud = Random.Range(0, 9);
 
             //obj = (GameObject)Instantiate(Sphere[ranSph], firstground.transform.position, firstground.transform.rotation);
-            obj = (GameObject)Instantiate(Sphere, firstground[ranX].transform.position, firstground[ranX].transform.rotation);
+            obj = (GameObject)Instantiate(Sphere, firstground[ranCloud].transform.position, firstground[ranCloud].transform.rotation);
             obj.transform.localScale = new Vector3(35f, 35f, 5f); //구름링 클론 크기 변경
 
             SunList.Add(obj);
 
-            SunList[i].transform.position = new Vector3(firstground[ranX].transform.position.x,
-                firstground[ranX].transform.position.y, firstground[ranX].transform.position.z);
+            SunList[i].transform.position = new Vector3(firstground[ranCloud].transform.position.x,
+                firstground[ranCloud].transform.position.y, firstground[ranCloud].transform.position.z);
 
             //if (ranSph == 0)
             //    obj.transform.localScale = new Vector3(13f, 13f, 13f); //햇살 클론 크기 변경
