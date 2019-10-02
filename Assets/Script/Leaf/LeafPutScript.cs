@@ -44,7 +44,9 @@ public class LeafPutScript : MonoBehaviour
         {
             var o = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
             iCount++;
-            Destroy(o, fDeleteSpeed);
+        
+
+            //Destroy(o, fDeleteSpeed);
             if (iCount >= 100) 
                 iCount = 0;
         }
@@ -62,7 +64,7 @@ public class LeafPutScript : MonoBehaviour
         {
             iCount++;
             var p = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat2, RandomQuat, RandomQuat3));
-            Destroy(p, fDeleteSpeed);
+            //Destroy(p, fDeleteSpeed);
 
         }
     }
@@ -77,9 +79,10 @@ public class LeafPutScript : MonoBehaviour
 
         if (iCount <= 150)
         {
+            
             iCount++;
             var q = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat2, RandomQuat, RandomQuat3));
-            Destroy(q, fDeleteSpeed);
+            //Destroy(q, fDeleteSpeed);
 
         }
     }

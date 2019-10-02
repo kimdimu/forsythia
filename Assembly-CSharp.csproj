@@ -69,6 +69,7 @@
     <Compile Include="Assets\Script\FauxGravityAttractor.cs" />
     <Compile Include="Assets\Script\FauxGravityBody.cs" />
     <Compile Include="Assets\Script\JoyStick.cs" />
+    <Compile Include="Assets\Script\Leaf\LeafDeleteScript.cs" />
     <Compile Include="Assets\Script\Leaf\LeafPutScript.cs" />
     <Compile Include="Assets\Script\Map.cs" />
     <Compile Include="Assets\Script\Option.cs" />
