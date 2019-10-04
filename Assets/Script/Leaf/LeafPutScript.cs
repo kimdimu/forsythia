@@ -6,14 +6,18 @@ using UnityEngine;
 public class LeafPutScript : MonoBehaviour
 {
     public GameObject Leaf;
-    public float fCreateSpeed; //= 1.5f;
-    public float fDeleteSpeed; // =10.0f;
+    public GameObject SaveLeaf;
 
+    public float fCreateSpeed; //= 1.5f;
+    //public float fDeleteSpeed; // =10.0f;
+
+    private int SaveCount;
     private int iCount;
     private float CurClock;
     // Start is called before the first frame update
     void Start()
     {
+        SaveCount = 0;
         iCount = 0;
         CurClock = 0;
     }
@@ -21,14 +25,33 @@ public class LeafPutScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurClock += Time.deltaTime;
-        if (CurClock > fCreateSpeed)
+        if (SaveCount <= 300)
         {
-            CreateLeaf();
-            CreateLeafSecond();
-            CreateLeafThird();
-            CurClock = 0.0f;
+            FirstLeaf();
         }
+        else if (SaveCount >= 300)
+        {
+            CurClock += Time.deltaTime;
+            if (CurClock > fCreateSpeed)
+            {
+                CreateLeaf();
+                CreateLeafSecond();
+                CreateLeafThird();
+                CurClock = 0.0f;
+            }
+        }
+    }
+    void FirstLeaf()
+    {
+        float RandomXPos = Random.Range(530, 770);
+        float RandomZPos = Random.Range(-150, 150);
+        float RandomQuat = Random.Range(0, 180);
+        float RandomQuat2 = Random.Range(0, 180);
+        float RandomQuat3 = Random.Range(0, 180);
+
+        var m = Instantiate(SaveLeaf, new Vector3(RandomXPos, 1100, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
+        SaveCount++;
+
     }
 
     void CreateLeaf()
@@ -65,7 +88,7 @@ public class LeafPutScript : MonoBehaviour
             iCount++;
             var p = Instantiate(Leaf, new Vector3(RandomXPos, 1150, RandomZPos), Quaternion.Euler(RandomQuat2, RandomQuat, RandomQuat3));
             //Destroy(p, fDeleteSpeed);
-
+            
         }
     }
 
