@@ -13,9 +13,11 @@ public class Controller : MonoBehaviour
     public float PlayerMoveSpeed = 50f;   // 플레이어 스피드
     private float Radius;           // 조이스틱 배경의 반 지름.
     private bool MoveFlag;          // 플레이어 움직임 스위치.
+    private int MoveDistance;
 
     void Start()
     {
+        MoveDistance = 0;
         Radius = GetComponent<RectTransform>().sizeDelta.y * 0.5f;
         StickFirstPos = Stick.transform.position;
 
@@ -29,7 +31,16 @@ public class Controller : MonoBehaviour
     void Update()
     {
         if (MoveFlag)
+        {
             Player.transform.Translate(Vector3.forward * Time.deltaTime * PlayerMoveSpeed);
+            MoveDistance +=  (int)(Time.deltaTime * PlayerMoveSpeed);                       //플레이어가 이만큼 움직였따. 
+        }
+        else if(MoveDistance >= 2500) //얘도 수치화 시켜주도록 하자
+        {
+            //Event
+            //Panel을 SetActive false 해놓고, Event발생 시 True 바꿔주기
+        }
+        
     }
 
     // 드래그

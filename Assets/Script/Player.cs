@@ -6,13 +6,25 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     //public float moveSpeed = 15;
+   
+
     private Vector3 moveDir;
-    float SwipeLength;
-    Vector2 StartPos;
-    Vector2 LastPos;    
+    private Vector3 PrevPos;
+
+    private float SwipeLength;
+    
+
+    private Vector2 StartPos;
+    private Vector2 LastPos;    
+
     public GameObject Target;
     //public GameObject MainCam;
     // SP와 LP 사이의 거리가 일정 이상일 경우 인게임 화면 
+
+    void Start()
+    {
+        PrevPos = this.transform.position;
+    }
 
     void Update()
     {
@@ -36,16 +48,21 @@ public class Player : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //회전 매개변수 축, 각도, 기준점
-            transform.Rotate(0, Time.deltaTime * -80, 0, Space.World);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(0, Time.deltaTime * 80, 0, Space.World);
-        }
-        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    //회전 매개변수 축, 각도, 기준점
+        //    transform.Rotate(0, Time.deltaTime * -80, 0, Space.World);
+        //}
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    transform.Rotate(0, Time.deltaTime * 80, 0, Space.World);
+        //}
+        //moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+    }
+
+    void DistanceFunc()
+    {
+
     }
 
     void FixedUpdate()

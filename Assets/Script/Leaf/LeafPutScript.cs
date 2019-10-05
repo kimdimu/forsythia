@@ -20,16 +20,14 @@ public class LeafPutScript : MonoBehaviour
         SaveCount = 0;
         iCount = 0;
         CurClock = 0;
+
+        FirstLeaf();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SaveCount <= 300)
-        {
-            FirstLeaf();
-        }
-        else if (SaveCount >= 300)
+        if (SaveCount >= 300)
         {
             CurClock += Time.deltaTime;
             if (CurClock > fCreateSpeed)
@@ -43,15 +41,17 @@ public class LeafPutScript : MonoBehaviour
     }
     void FirstLeaf()
     {
-        float RandomXPos = Random.Range(530, 770);
-        float RandomZPos = Random.Range(-150, 150);
-        float RandomQuat = Random.Range(0, 180);
-        float RandomQuat2 = Random.Range(0, 180);
-        float RandomQuat3 = Random.Range(0, 180);
+        for(int i = 0; i <= 300; i++)
+        {
+            float RandomXPos = Random.Range(530, 770);
+            float RandomZPos = Random.Range(-150, 150);
+            float RandomQuat = Random.Range(0, 180);
+            float RandomQuat2 = Random.Range(0, 180);
+            float RandomQuat3 = Random.Range(0, 180);
 
-        var m = Instantiate(SaveLeaf, new Vector3(RandomXPos, 1100, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
-        SaveCount++;
-
+            var m = Instantiate(SaveLeaf, new Vector3(RandomXPos, 1120, RandomZPos), Quaternion.Euler(RandomQuat3, RandomQuat, RandomQuat2));
+            SaveCount++;
+        }
     }
 
     void CreateLeaf()
@@ -113,6 +113,6 @@ public class LeafPutScript : MonoBehaviour
 
 
 //일정시간 지나면 삭제 
-//회전 Quaternion을 바꿔줘야함
+//회전 Quaternion을 바꿔자
 // 흩날리도록
 
