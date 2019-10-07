@@ -28,7 +28,7 @@ public class CloudHitPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Player") //구름링이 Player 태그와 충돌하면
         {
             TestFly.BirdSpeed = 250; //속도 증가
-            InFlyCamera.speed = 300;
+            InFlyCamera.speed = 250;
             IsHit = true;
         }
     }
