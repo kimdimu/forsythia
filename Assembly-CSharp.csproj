@@ -68,6 +68,17 @@
     <Compile Include="Assets\Script\Controller.cs" />
     <Compile Include="Assets\Script\FauxGravityAttractor.cs" />
     <Compile Include="Assets\Script\FauxGravityBody.cs" />
+    <Compile Include="Assets\Script\InFly\CloudHitPlayer.cs" />
+    <Compile Include="Assets\Script\InFly\Fly.cs" />
+    <Compile Include="Assets\Script\InFly\HitPlayer.cs" />
+    <Compile Include="Assets\Script\InFly\InFlyCamera.cs" />
+    <Compile Include="Assets\Script\InFly\Sun.cs" />
+    <Compile Include="Assets\Script\InFly\TestFly.cs" />
+    <Compile Include="Assets\Script\InGameScript\ClickButton.cs" />
+    <Compile Include="Assets\Script\InGameScript\DataController.cs" />
+    <Compile Include="Assets\Script\InGameScript\InGameCamera.cs" />
+    <Compile Include="Assets\Script\InGameScript\InGamePlayer.cs" />
+    <Compile Include="Assets\Script\InGameScript\SoundSetting.cs" />
     <Compile Include="Assets\Script\JoyStick.cs" />
     <Compile Include="Assets\Script\Leaf\LeafDeleteScript.cs" />
     <Compile Include="Assets\Script\Leaf\LeafPutScript.cs" />
