@@ -47,13 +47,11 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void RightFly()
     {
         right = true;
-        //player.transform.position += Vector3.right * TestFly.MoveSpeed * Time.deltaTime;
     }
     //왼쪽으로 버튼을 누르면
     public void LeftFly()
     {
         left = true;
-        // player.transform.position += Vector3.left * TestFly.MoveSpeed * Time.deltaTime;
     }
     public void OffRightFly()
     {
