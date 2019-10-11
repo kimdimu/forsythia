@@ -1420,7 +1420,7 @@ MonoBehaviour:
   Leaf: {fileID: 3851412348236795219, guid: 2d2f5e24ea18fe54a9f51339fbddc085, type: 3}
   SaveLeaf: {fileID: 1714041287059514866, guid: f08ecff92fb28bc4cb79518fc055ee6f,
     type: 3}
-  fCreateSpeed: 0.7
+  fCreateSpeed: 0.8
 --- !u!4 &619697797
 Transform:
   m_ObjectHideFlags: 0
