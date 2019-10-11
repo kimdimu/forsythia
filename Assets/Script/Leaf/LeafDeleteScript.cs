@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LeafDeleteScript : MonoBehaviour
 {
-
+    private float fCheck;
     private float CurClock;
     private float RotateClock;
     private bool bCheck;
@@ -15,6 +15,7 @@ public class LeafDeleteScript : MonoBehaviour
         bCheck = true;
         CurClock = 0;
         RotateClock = 0.08f;
+        fCheck = 0.0f;
     }
 
     // Update is called once per frame
