@@ -15,7 +15,7 @@ public class LeafDeleteScript : MonoBehaviour
         bCheck = true;
         CurClock = 0;
         RotateClock = 0.08f;
-        fCheck = 0.0f;
+        fCheck = 10.0f;
     }
 
     // Update is called once per frame
