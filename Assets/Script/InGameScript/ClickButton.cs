@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClickButton : MonoBehaviour
 {
@@ -10,12 +11,8 @@ public class ClickButton : MonoBehaviour
     public static bool IsWeak = false; //약하게를 눌렀는지
     public static bool IsLeftJump = false; //왼쪽 도약 키를 눌렀는지
     public static bool IsRightJump = false; //오른쪽 도약 키를 눌렀는지
+    public static bool IsStop = false; //옵션을 눌렀는지
 
-    void Start()
-    {
-       
-    }
-    
     public void Strong()
     {
         IsStrong = true;
@@ -34,5 +31,18 @@ public class ClickButton : MonoBehaviour
     public void RightJump()
     {
        IsRightJump = true;
+    }
+
+    public void TimeNotMove()
+    {
+        if (IsStop)
+            IsStop = false;
+        else if (!IsStop)
+            IsStop = true;
+    }
+
+    public void IsMain()
+    {
+        SceneManager.LoadScene("TestMain");
     }
 }

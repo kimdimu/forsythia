@@ -38,6 +38,8 @@ public class InGamePlayer : MonoBehaviour
     public static bool BigSuccess; //대성공
     public static bool Success; //성공
 
+    public GameObject StopPanel;
+
     void Start()
     {
         ClickButton.IsStrong = false;
@@ -50,7 +52,8 @@ public class InGamePlayer : MonoBehaviour
         LeftJump.SetActive(false); //왼쪽 도약 안보이게함
         RightJump.SetActive(false); //오른쪽 도약 안보이게함
         BirdJump.SetActive(false); //도약 바 안보이게함
-        
+        StopPanel.SetActive(false); //옵션 창 안보이게 함
+
         StartPosition = Handle.transform.position;//시작위치
         firstground = GameObject.FindGameObjectWithTag("Ground"); //처음 발판의 위치 받아오기 위해 사용
         
@@ -90,25 +93,26 @@ public class InGamePlayer : MonoBehaviour
             RightJump.SetActive(true); //오른쪽 도약 보이게함
             BirdJump.SetActive(true); //도약 바 보이게함
 
-            /* 대성공_StartPosition.x = 480, 대성공_EndPosition.x = 480, 성공_StartPosition.x = 340, 성공_EndPosition.x = 720
+            /* 대성공_StartPosition.x = 140, 대성공_EndPosition.x = 170,
+             성공_StartPosition.x = 100, 성공_EndPosition.x = 205
             //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
             if(IsRightJump && IsLeftJump)
             {
                 //실패 영역에서 눌렀으면
-                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 340) ||
-                Handle.transform.position.x >= 720 && Handle.transform.position.x <= EndPosition.x))
+                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 100) ||
+                Handle.transform.position.x >= 205 && Handle.transform.position.x <= EndPosition.x))
                 {
                     //게임 종료
                 }
                 //성공 영역에서 눌렀으면
-                if((Handle.transform.position.x >= 340 && Handle.transform.position.x <= 410) ||
-                (Handle.transform.position.x >= 580 && Handle.transform.position.x <= 720))
+                if((Handle.transform.position.x >= 47 && Handle.transform.position.x <= 140) ||
+                (Handle.transform.position.x >= 170 && Handle.transform.position.x <= 270))
                 {
                     SceneManager.LoadScene("TestFly"); //Fly 시작
                     Success = true;
                 }
                 //대성공 영역에서 눌렀으면
-                if(Handle.transform.position.x >= 410 && Handle.transform.position.x <= 580)
+                if(Handle.transform.position.x >= 140 && Handle.transform.position.x <= 170)
                 {
                     SceneManager.LoadScene("TestFly");
                     BigSuccess = true;
@@ -143,6 +147,18 @@ public class InGamePlayer : MonoBehaviour
                 //TestFly 씬으로 가 비행을 시작한다
                 SceneManager.LoadScene("TestFly");
             }
+        }
+        if (ClickButton.IsStop) //옵션을 눌러 켜졌으면
+        {
+            Time.timeScale = 0; //시간 멈춤
+            //BackSound.IsOff = false; //노래는 멈추지 않게 함
+            //BackSound.IsOn = true;
+            StopPanel.SetActive(true); //옵션 판넬 보이게 함
+        }
+        if (!ClickButton.IsStop) //옵션을 눌러 꺼졌으면
+        {
+            Time.timeScale = 1; //시간 움직임
+            StopPanel.SetActive(false); //옵션 판넬 안보이게 함
         }
     }
 
