@@ -32,7 +32,7 @@ public class Axis : MonoBehaviour
     void Zoom()
     {
         Distance += Input.GetAxis("Mouse ScrollWheel") * ZoomSpeed * -1;
-        Distance = Mathf.Clamp(Distance, 70f, 200f);
+        Distance = Mathf.Clamp(Distance, 100f, 200f);
 
         AxisVec = transform.forward * -1;
         AxisVec *= Distance;
@@ -49,12 +49,13 @@ public class Axis : MonoBehaviour
             Gap.x += Input.GetAxis("Mouse Y") * RotationSpeed * -1;
             Gap.y += Input.GetAxis("Mouse X") * RotationSpeed;
 
-            Gap.x = Mathf.Clamp(Gap.x, -5f, 85f);
+
+            Gap.x = Mathf.Clamp(Gap.x, -5f, 80f);
             TargetRotation = Quaternion.Euler(Gap);
 
-            Quaternion q = TargetRotation;
-            q.x = q.z = 0;
-            CameraVector.transform.rotation = q;
+            //Quaternion q = TargetRotation;
+            //q.x = q.z = 0;
+            //CameraVector.transform.rotation = q;
 
         }
 

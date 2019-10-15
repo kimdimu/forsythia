@@ -12,6 +12,7 @@ public class CameraMan : MonoBehaviour
     void Start()
     {
         Target = GameObject.FindGameObjectWithTag("Player").transform;
+        transform.Rotate(2.2f, 0, 0);
     }
 
     // Update is called once per frame
@@ -21,7 +22,6 @@ public class CameraMan : MonoBehaviour
         Pos.y -= 25;
         Pos.x += 10;
         transform.position += (Target.position - Pos) * MoveSpeed * Time.deltaTime;
-
 
     }
 }
