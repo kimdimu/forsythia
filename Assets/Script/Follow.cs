@@ -18,7 +18,7 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0,20,0);
+        transform.Rotate(270 ,45,-270); //이새끼 왜 로테이션이 쳐안먹히는거야
         
         
         Vector3 Pos = target.position + new Vector3(0.0f, 20.0f, 0.0f); //거리
