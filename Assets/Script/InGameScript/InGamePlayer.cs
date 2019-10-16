@@ -38,7 +38,9 @@ public class InGamePlayer : MonoBehaviour
     public static bool BigSuccess; //대성공
     public static bool Success; //성공
 
-    public GameObject StopPanel;
+    public GameObject StopPanel; //설정 팝업
+
+    //public Text Score;
 
     void Start()
     {
@@ -62,6 +64,8 @@ public class InGamePlayer : MonoBehaviour
 
     void Update()
     {
+        //Score.text = "점수 : " + Score;
+        
         //강하게 눌렀을 때 + 약하게 안 눌렀을 때 + 두 칸 다 올라왔으면
         if (ClickButton.IsStrong && ClickButton.IsWeak == false && JumpCount == 0)
         {
