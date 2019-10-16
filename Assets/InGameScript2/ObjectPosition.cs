@@ -36,10 +36,14 @@ public class ObjectPosition : MonoBehaviour
     public GameObject BranchObject3; //꽃
     public GameObject BranchObject4; //시든가지
 
-
     public GameObject FlyBranch; //도약발판
 
     public GameObject StandardBranch; //기본 발판
+
+
+    // 아이템객체
+    public GameObject Shield;
+
 
     //가지를 랜덤으로 생성할 오브젝트
     public GameObject RandomBranch_Right; //오른쪽
@@ -54,24 +58,30 @@ public class ObjectPosition : MonoBehaviour
     //기둥의 회전 x값을 조정하는 변수
     int RandQNum;
 
+
+
     //클론을 생성할 초기기둥 오브젝트
     public GameObject Branch1;
     public GameObject Branch2;
     public GameObject Branch3;
 
+
+
+
     //기둥객체를 생성하고 관리해줄 리스트 생성
     List<GameObject> branchList = new List<GameObject>();
 
     //가지객체를 관리할 리스트 생성
-    List<GameObject> leafList = new List<GameObject>();
+    public static List<GameObject> leafList = new List<GameObject>();
 
-    //GameObject TEST = GameObject.FindGameObjectWithTag("test");
 
     //위치값을 받아올 기둥 빈오브젝트
     public GameObject emptybranch1;
 
     //기둥의 빈오브젝트의 위치값을 넣어줄 벡터
     private Vector3 lastBranchPos;
+
+
 
     // 가지종류전환을 위한 랜덤값생성위한 인티져값
     int RandBranchIndex;
@@ -84,6 +94,8 @@ public class ObjectPosition : MonoBehaviour
 
     //도약발판 생성용 플래그
     bool FlyFlag = false;
+
+
 
 
 
@@ -105,7 +117,6 @@ public class ObjectPosition : MonoBehaviour
 
         //벡터에 가지의 왼쪽 빈오브젝트의 위치값을 넣어준다
         LeftBranchPos = this.RandomBranch_Right.transform.position;
-
 
 
     }
@@ -531,6 +542,8 @@ public class ObjectPosition : MonoBehaviour
             //0번째 객체가 이상한곳에 생성되어서 false처리 해놓음...
             leafList[0].SetActive(false);
             branchList[0].SetActive(false);
+
+
 
 
             //0.5f초후에 다시 while문 돈다.
