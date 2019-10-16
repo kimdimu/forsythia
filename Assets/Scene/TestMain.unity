@@ -872,8 +872,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 185422146}
-  - component: {fileID: 185422145}
-  - component: {fileID: 185422147}
   m_Layer: 0
   m_Name: CameraMan
   m_TagString: Untagged
@@ -881,19 +879,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &185422145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185422144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e4ba3ea202317468d9777a550f4cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 15
 --- !u!4 &185422146
 Transform:
   m_ObjectHideFlags: 0
@@ -910,18 +895,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &185422147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185422144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e648df4e91e21c48b5f9353286e0310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &189912442 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: d52ace15f5f179b45a49f27c0f896bcc,
@@ -5473,7 +5446,6 @@ GameObject:
   - component: {fileID: 1793741588}
   - component: {fileID: 1793741587}
   - component: {fileID: 1793741586}
-  - component: {fileID: 1793741585}
   - component: {fileID: 1793741584}
   m_Layer: 5
   m_Name: Button
@@ -5491,7 +5463,7 @@ RectTransform:
   m_GameObject: {fileID: 1793741582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4301, y: 1.4301, z: 1.4301}
   m_Children:
   - {fileID: 1340675224}
   m_Father: {fileID: 43797695}
@@ -5499,7 +5471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -235, y: -961}
+  m_AnchoredPosition: {x: 7, y: -961}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1793741584
@@ -5511,24 +5483,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793741582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87614c31a418f2947aac54c486c59427, type: 3}
+  m_Script: {fileID: 11500000, guid: 69fc296f77aba384ebdbb087dfcf492e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1793741585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793741582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2710a6bfc33af244da570c4973ea0905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blink: {fileID: 1591155375}
-  shareButtons: {fileID: 1793741582}
-  panel: {fileID: 518220419}
 --- !u!114 &1793741586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5572,8 +5529,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1793741585}
-        m_MethodName: Capture_Button
+      - m_Target: {fileID: 1793741584}
+        m_MethodName: IsMission
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

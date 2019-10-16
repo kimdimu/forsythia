@@ -135,6 +135,7 @@
     <Compile Include="Assets\Script\JoyStick.cs" />
     <Compile Include="Assets\Script\Leaf\LeafDeleteScript.cs" />
     <Compile Include="Assets\Script\Leaf\LeafPutScript.cs" />
+    <Compile Include="Assets\Script\NewBehaviourScript.cs" />
     <Compile Include="Assets\Script\Option.cs" />
     <Compile Include="Assets\Script\PlanetGravity.cs" />
     <Compile Include="Assets\Script\PlanetGravityAttractor.cs" />
