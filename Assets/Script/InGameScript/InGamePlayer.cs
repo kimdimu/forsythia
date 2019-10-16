@@ -49,10 +49,10 @@ public class InGamePlayer : MonoBehaviour
         BigSuccess = false;
         Success = false;
 
-        LeftJump.SetActive(false); //왼쪽 도약 안보이게함
-        RightJump.SetActive(false); //오른쪽 도약 안보이게함
-        BirdJump.SetActive(false); //도약 바 안보이게함
-        StopPanel.SetActive(false); //옵션 창 안보이게 함
+        LeftJump.SetActive(false); //왼쪽 도약 안 보이게함
+        RightJump.SetActive(false); //오른쪽 도약 안 보이게함
+        BirdJump.SetActive(false); //도약 바 안 보이게함
+        StopPanel.SetActive(false); //옵션 창 안 보이게 함
 
         StartPosition = Handle.transform.position;//시작위치
         firstground = GameObject.FindGameObjectWithTag("Ground"); //처음 발판의 위치 받아오기 위해 사용
