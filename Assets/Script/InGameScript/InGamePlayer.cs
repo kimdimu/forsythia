@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class InGamePlayer : MonoBehaviour
@@ -9,6 +10,10 @@ public class InGamePlayer : MonoBehaviour
 
     public GameObject StrongBtn; //강하게 버튼
     public GameObject WeakBtn; //약하게 버튼
+
+    Vector3 StVector; //st위치
+    Vector3 WeVector; //we위치
+    Vector3 TempVector; //위치 저장할 변수
 
     int JumpCount = 0; //점프 횟수 카운트
     int UpNum = 0; //밟은 발판 개수 카운트
@@ -40,7 +45,8 @@ public class InGamePlayer : MonoBehaviour
 
     public GameObject StopPanel; //설정 팝업
 
-    //public Text Score;
+    public static int Score; //점수
+    public Text Text_Score; //점수 표시 물체
 
     void Start()
     {
@@ -58,13 +64,21 @@ public class InGamePlayer : MonoBehaviour
 
         StartPosition = Handle.transform.position;//시작위치
         firstground = GameObject.FindGameObjectWithTag("Ground"); //처음 발판의 위치 받아오기 위해 사용
-        
+
         GroundInit(); //발판 클론 생성
+
+        if (ChangeButton.IsChange) //자리 바뀌었으면
+        {
+            TempVector = StrongBtn.transform.position; //st위치를 temp에 저장
+            StrongBtn.transform.position = WeakBtn.transform.position; //we위치를 st에 넣음 
+            WeakBtn.transform.position = TempVector; //temp위치를 we에 저장
+        }
     }
 
     void Update()
     {
-        //Score.text = "점수 : " + Score;
+
+        Text_Score.text = "점수 : " + Score;
         
         //강하게 눌렀을 때 + 약하게 안 눌렀을 때 + 두 칸 다 올라왔으면
         if (ClickButton.IsStrong && ClickButton.IsWeak == false && JumpCount == 0)
@@ -155,8 +169,6 @@ public class InGamePlayer : MonoBehaviour
         if (ClickButton.IsStop) //옵션을 눌러 켜졌으면
         {
             Time.timeScale = 0; //시간 멈춤
-            //BackSound.IsOff = false; //노래는 멈추지 않게 함
-            //BackSound.IsOn = true;
             StopPanel.SetActive(true); //옵션 판넬 보이게 함
         }
         if (!ClickButton.IsStop) //옵션을 눌러 꺼졌으면
