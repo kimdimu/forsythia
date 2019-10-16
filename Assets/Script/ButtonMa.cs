@@ -27,4 +27,9 @@ public class ButtonMa : MonoBehaviour
     {
 
     }
+
+    public void ShowScreen()
+    {
+
+    }
 }
