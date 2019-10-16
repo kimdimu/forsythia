@@ -75,7 +75,7 @@ public class Screenshot : MonoBehaviour
         ss.Apply();
 
         // 갤러리갱신
-       // Debug.Log("" + NativeGallery.SaveImageToGallery(ss, albumName,
+        //Debug.Log("" + NativeGallery.SaveImageToGallery(ss, albumName,
        //     "Screenshot_" + System.DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss") + "{0}.png"));
         
         // To avoid memory leaks.
