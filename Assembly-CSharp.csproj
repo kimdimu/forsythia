@@ -107,9 +107,11 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Script\ButtonMa.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
     <Compile Include="Assets\Script\CameraManager\Axis.cs" />
     <Compile Include="Assets\Script\CameraManager\CameraMan.cs" />
+    <Compile Include="Assets\Script\ChangeButton.cs" />
     <Compile Include="Assets\Script\Controller.cs" />
     <Compile Include="Assets\Script\FauxGravityAttractor.cs" />
     <Compile Include="Assets\Script\FauxGravityBody.cs" />
@@ -127,10 +129,10 @@
     <Compile Include="Assets\Script\InGameScript\InGameCamera.cs" />
     <Compile Include="Assets\Script\InGameScript\InGamePlayer.cs" />
     <Compile Include="Assets\Script\InGameScript\SoundSetting.cs" />
+    <Compile Include="Assets\Script\IsCamera.cs" />
     <Compile Include="Assets\Script\JoyStick.cs" />
     <Compile Include="Assets\Script\Leaf\LeafDeleteScript.cs" />
     <Compile Include="Assets\Script\Leaf\LeafPutScript.cs" />
-    <Compile Include="Assets\Script\Map.cs" />
     <Compile Include="Assets\Script\Option.cs" />
     <Compile Include="Assets\Script\PlanetGravity.cs" />
     <Compile Include="Assets\Script\PlanetGravityAttractor.cs" />
