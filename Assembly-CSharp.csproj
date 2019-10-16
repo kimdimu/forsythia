@@ -117,6 +117,7 @@
     <Compile Include="Assets\Script\FauxGravityBody.cs" />
     <Compile Include="Assets\Script\Follow.cs" />
     <Compile Include="Assets\Script\GetPicture.cs" />
+    <Compile Include="Assets\Script\HiResScreenShots.cs" />
     <Compile Include="Assets\Script\InFlyScript\CloudHitPlayer.cs" />
     <Compile Include="Assets\Script\InFlyScript\Fly.cs" />
     <Compile Include="Assets\Script\InFlyScript\HitPlayer.cs" />
