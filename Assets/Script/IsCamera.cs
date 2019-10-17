@@ -27,7 +27,6 @@ public class IsCamera : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(CameraPanmel.transform.position);
         if (ButtonMa.IsCameraClick) //카메라 눌렀으면
         {
             Debug.Log("카메라누름");
@@ -50,7 +49,6 @@ public class IsCamera : MonoBehaviour
 
     IEnumerator Rendering()
     {
-        Debug.Log("렌더링");
         yield return new WaitForEndOfFrame(); //Update()가 실행되고 화면에 렌더링이 끝난 이후에 호출
 
         byte[] imgBytes;
@@ -62,6 +60,8 @@ public class IsCamera : MonoBehaviour
         imgBytes = texture.EncodeToJPG();
         System.IO.File.WriteAllBytes(path, imgBytes);
         Debug.Log(path + " has been saved");
+
+        yield return new WaitForSecondsRealtime(0.3f);
 
         CameraPanmel.transform.position = _CameraPan;
     }
