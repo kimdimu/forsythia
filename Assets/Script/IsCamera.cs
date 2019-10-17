@@ -27,17 +27,15 @@ public class IsCamera : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(CameraPanmel.transform.position);
         if (ButtonMa.IsCameraClick) //카메라 눌렀으면
         {
-            Debug.Log("카메라 누름 / 코루틴 전 위치 : "+ CameraPanmel.transform.position);
+            Debug.Log("카메라누름");
             OptionBtn.SetActive(false); //설정 버튼 안 보이게 함
             MissionBtn.SetActive(false); //미션 버튼 안 보이게 함
             CameraBtn.transform.position = newCameraBut; //새로운 위치로 이동시킴 (안 보이게 함)
             Controller.SetActive(false); //컨트롤러 안 보이게 함
-
             StartCoroutine("Rendering");
-
-            Debug.Log("카메라 누름 / 코루틴 후 위치 : " + CameraPanmel.transform.position);
         }
 
         if (!ButtonMa.IsCameraClick) //카메라 안 눌렀으면
@@ -52,7 +50,8 @@ public class IsCamera : MonoBehaviour
 
     IEnumerator Rendering()
     {
-        yield return new WaitForEndOfFrame();
+        Debug.Log("렌더링");
+        yield return new WaitForEndOfFrame(); //Update()가 실행되고 화면에 렌더링이 끝난 이후에 호출
 
         byte[] imgBytes;
         string path = @"C:\Users\403\Documents\GitHub\forsythia\ScreenShot\test.png";
@@ -64,8 +63,6 @@ public class IsCamera : MonoBehaviour
         System.IO.File.WriteAllBytes(path, imgBytes);
         Debug.Log(path + " has been saved");
 
-       // yield return new WaitForSeconds(0.1f);
-
-        CameraPanmel.transform.position = _CameraPan; //원래 위치로 돌아옴 (보이게 함)
+        CameraPanmel.transform.position = _CameraPan;
     }
 }
