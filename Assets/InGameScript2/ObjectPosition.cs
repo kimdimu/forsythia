@@ -71,7 +71,7 @@ public class ObjectPosition : MonoBehaviour
     List<GameObject> branchList = new List<GameObject>();
 
     //가지객체를 관리할 리스트 생성
-    List<GameObject> leafList = new List<GameObject>();
+    public static List<GameObject> leafList = new List<GameObject>();
 
 
     //위치값을 받아올 기둥 빈오브젝트
@@ -126,7 +126,7 @@ public class ObjectPosition : MonoBehaviour
         LimitTime -= Time.deltaTime; // 일정한 시간에 따라 감소
         branchTimer += Time.deltaTime; // 일정한 시간에 따라 증가
 
-        //Debug.Log("제한시간 : " + LimitTime);
+        Debug.Log("제한시간 : " + LimitTime);
 
         if (branchTimer >= 10) // 10초로 설정.
         {
@@ -452,7 +452,7 @@ public class ObjectPosition : MonoBehaviour
 
                             if (RandBranchIndex == 1)
                             {
-                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(16.327f, 216.863f, 23.591f)) as GameObject;
+                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(22.237f, 38.376f, 28.799f)) as GameObject;
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
@@ -479,7 +479,7 @@ public class ObjectPosition : MonoBehaviour
 
                             if (RandBranchIndex == 1)
                             {
-                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(16.327f, 216.863f, 23.591f)) as GameObject;
+                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(22.237f, 38.376f, 28.799f)) as GameObject;
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
@@ -534,7 +534,7 @@ public class ObjectPosition : MonoBehaviour
 
                             if (RandBranchIndex == 1)
                             {
-                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(16.327f, 216.863f, 23.591f)) as GameObject;
+                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(22.237f, 38.376f, 28.799f)) as GameObject;
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
@@ -580,7 +580,7 @@ public class ObjectPosition : MonoBehaviour
 
                             if (RandBranchIndex == 1)
                             {
-                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(16.327f, 216.863f, 23.591f)) as GameObject;
+                                GameObject _leaf = Instantiate(BranchArray[RandBranchIndex], new Vector3(pos2.x, pos2.y, pos2.z), Quaternion.Euler(22.237f, 38.376f, 28.799f)) as GameObject;
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
