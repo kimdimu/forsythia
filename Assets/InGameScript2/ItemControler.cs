@@ -19,7 +19,7 @@
 
 //    // Start is called before the first frame update
 //    void Start()
-//    {       
+//    {
 //        testPos = this.empty_normal1.transform.position;
 
 //        //리스트의 마지막에 있는 클론의 0번째 자식위치값을 testPos에 받아옴
@@ -44,7 +44,7 @@
 //        int testest = Random.Range(0, 10);
 
 
-//        if(testtest /3 ==0)
+//        if (testtest / 3 == 0)
 //        {
 //            GameObject _Item = Instantiate(ITemArray[RandItemIndex], new Vector3(testPos.x, testPos.y, testPos.z), Quaternion.Euler(90, 90, 90)) as GameObject;
 
