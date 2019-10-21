@@ -138,7 +138,7 @@
     <Compile Include="Assets\Script\PlanetGravityAttractor.cs" />
     <Compile Include="Assets\Script\PlanetGravityBody.cs" />
     <Compile Include="Assets\Script\Player.cs" />
-    <Compile Include="Assets\Script\ScreenShot.cs" />
+    <Compile Include="Assets\Script\Screenshot.cs" />
     <Compile Include="Assets\Script\TestMap.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
