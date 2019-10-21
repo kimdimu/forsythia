@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class Sun : MonoBehaviour
 {
-    public GameObject Clound; //복제 될 구름링
+    public GameObject Sphere; //복제 될 햇살
     public GameObject[] firstground; //구름링 생성 위치
 
     GameObject obj; //클론 받아오는 오브젝트
-    List<GameObject> CloudList = new List<GameObject>(); //오브젝트 리스트 생성
+    List<GameObject> SunList = new List<GameObject>(); //오브젝트 리스트 생성
 
     int ranCloud; //구름링 위치 랜덤 지정
 
     void Start()
     {
         // firstground = GameObject.FindGameObjectWithTag("Sun"); //처음 발판의 위치 받아오기 위해 사용
-        CloudInIt(); //햇살 생성 시작
+        SunInIt(); //햇살 생성 시작
     }
 
     void Update()
     {
         //만약 비행 게이지가 0이 되어 비행이 끝나면
-        //if(TestFly.IsFlyEnd == true)
-        //{
-        //    Destroy(obj.gameObject); //클론을 지운다
-        //}
+        if(TestFly.IsFlyEnd == true)
+        {
+            Destroy(obj.gameObject); //클론을 지운다
+        }
     }
 
     //햇살 생성 시키는 함수
-    void CloudInIt()
+    void SunInIt()
     {
         //세 개만 생성
         for (int i = 0; i < 3; i++)
@@ -36,12 +36,12 @@ public class Sun : MonoBehaviour
             ranCloud = Random.Range(0, 8);
             Debug.Log(ranCloud);
             //obj = (GameObject)Instantiate(Sphere[ranSph], firstground.transform.position, firstground.transform.rotation);
-            obj = (GameObject)Instantiate(Clound, firstground[ranCloud].transform.position, firstground[ranCloud].transform.rotation);
+            obj = (GameObject)Instantiate(Sphere, firstground[ranCloud].transform.position, firstground[ranCloud].transform.rotation);
             obj.transform.localScale = new Vector3(35f, 35f, 5f); //구름링 클론 크기 변경
 
-            CloudList.Add(obj);
+            SunList.Add(obj);
 
-            CloudList[i].transform.position = new Vector3(firstground[ranCloud].transform.position.x,
+            SunList[i].transform.position = new Vector3(firstground[ranCloud].transform.position.x,
                 firstground[ranCloud].transform.position.y, firstground[ranCloud].transform.position.z);
 
             //if (ranSph == 0)
