@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene/TestMain.unity
+- path: Assets/Scene/TestFly.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
