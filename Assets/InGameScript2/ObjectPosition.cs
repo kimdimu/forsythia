@@ -126,7 +126,7 @@ public class ObjectPosition : MonoBehaviour
         LimitTime -= Time.deltaTime; // 일정한 시간에 따라 감소
         branchTimer += Time.deltaTime; // 일정한 시간에 따라 증가
 
-        Debug.Log("제한시간 : " + LimitTime);
+        //Debug.Log("제한시간 : " + LimitTime);
 
         if (branchTimer >= 10) // 10초로 설정.
         {
