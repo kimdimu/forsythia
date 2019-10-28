@@ -30,7 +30,6 @@ public class LeafDeleteScript : MonoBehaviour
                 RoateFunc();
             }
         }
-
     }
 
     void RoateFunc()
@@ -49,6 +48,7 @@ public class LeafDeleteScript : MonoBehaviour
         {
             bCheck = false;
             Destroy(gameObject, 3.0f);
+            Debug.Log("A");
         }
     } 
 }
