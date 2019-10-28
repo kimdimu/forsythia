@@ -20,18 +20,18 @@ public class Follow : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { //target이 멈췄을 때 이 객체의 로테이션 값을 고정시키고 위아래로 포지션값만 조정 
         
 
         //v = new Vector3(270, 45, -270);
         //this.transform.Rotate(v*Time.deltaTime); //이새끼 왜 로테이션이 쳐안먹히는거야
 
         Debug.Log(this.transform.rotation);
-        fHeight = Random.Range(-14.0f, -7.0f); //펄럭펄럭 
+        fHeight = Random.Range(0,0); //펄럭펄럭 
 
         Vector3 Pos = target.position + new Vector3(0.0f, fHeight, 0.0f); //거리
 
-        //transform.position = Vector3.Lerp(transform.position, Pos, Time.deltaTime * fSpeed);//거리가 생기면 따라오도록
+        transform.position = Vector3.Lerp(transform.position, Pos, Time.deltaTime * fSpeed);//거리가 생기면 따라오도록
 
         //Vector3 dirTarget = target.transform.position - this.transform.position;
         //this.transform.forward = dirTarget.normalized;
@@ -39,8 +39,8 @@ public class Follow : MonoBehaviour
         
         //transform.position += (target.position - Pos) * fSpeed;
         //transform.position -= new Vector3(3.0f, 0, 3.0f);
-        //transform.LookAt(target); // 뒤집혀지는 원인
-        this.transform.rotation = Quaternion.LookRotation(target.position);
+        transform.LookAt(target); // 뒤집혀지는 원인
+        //this.transform.rotation = Quaternion.LookRotation(target.position);
         //r.MoveRotation(r.rotation * Time.deltaTime);
 
         //transform.rotation = Quaternion.LookRotation(Pos);
