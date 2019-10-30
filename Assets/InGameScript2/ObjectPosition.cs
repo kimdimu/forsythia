@@ -19,13 +19,18 @@ using UnityEngine.UI;
 public class ObjectPosition : MonoBehaviour
 {
 
+    /*=========================== 타임체크 =================================*/
+
     public float FirstTime; //전체시간
     public float LimitTime; //변동시간
     public float branchTimer; //나뭇가지 타이머
 
     public float OverTimer;
 
+    float initial_Speed = 1.0f; //발판인덱스 및 초기 속도 제어 (1부터 시작, 1초)
+    float accel = 1.0f; //타이머가속
 
+    /*============================================================*/
 
     //가지 오브젝트
     public GameObject BranchObject_normal1; //일반가지1
@@ -44,6 +49,53 @@ public class ObjectPosition : MonoBehaviour
     public GameObject StandardBranch; //기본 발판
 
 
+
+    //아이템 오브젝트
+    public GameObject Shield;
+    public GameObject superjump;
+    public GameObject booster;
+    public GameObject coin;
+    public GameObject score;
+    public GameObject flowerGarden;
+
+
+    /*=========================== 리스트 =================================*/
+
+    //기둥객체를 생성하고 관리해줄 리스트 생성
+    List<GameObject> branchList = new List<GameObject>();
+
+    //가지객체를 관리할 리스트 생성
+    List<GameObject> leafList = new List<GameObject>();
+
+    //아이템객체를 관리할 리스트 생성
+    List<GameObject> ItemList = new List<GameObject>();
+
+
+
+    /*========================== 기둥용 ==================================*/
+
+
+    //위치값을 받아올 기둥 빈오브젝트
+    public GameObject emptybranch1;
+
+    //기둥의 빈오브젝트의 위치값을 넣어줄 벡터
+    private Vector3 lastBranchPos;
+
+    //기둥의 빈오브젝트의 위치값을 넣어줄 벡터
+    private Vector3 lastItemPos;
+
+
+    //클론을 생성할 초기기둥 오브젝트
+    public GameObject Branch1;
+    public GameObject Branch2;
+    public GameObject Branch3;
+
+    //기둥의 회전 x값을 조정하는 변수
+    int RandQNum;
+
+
+    /*========================== 가지용 =================================*/
+
     //가지를 랜덤으로 생성할 오브젝트
     public GameObject RandomBranch_Right; //오른쪽
     public GameObject RandomBranch_Left; //왼쪽
@@ -54,47 +106,16 @@ public class ObjectPosition : MonoBehaviour
     //가지의 left오브젝트의 위치값을 넣어줄 벡터
     private Vector3 LeftBranchPos;
 
-    //기둥의 회전 x값을 조정하는 변수
-    int RandQNum;
-
-
-
-    //클론을 생성할 초기기둥 오브젝트
-    public GameObject Branch1;
-    public GameObject Branch2;
-    public GameObject Branch3;
-
-
-
-
-    //기둥객체를 생성하고 관리해줄 리스트 생성
-    List<GameObject> branchList = new List<GameObject>();
-
-    //가지객체를 관리할 리스트 생성
-    public static List<GameObject> leafList = new List<GameObject>();
-
-
-    //위치값을 받아올 기둥 빈오브젝트
-    public GameObject emptybranch1;
-
-    //기둥의 빈오브젝트의 위치값을 넣어줄 벡터
-    private Vector3 lastBranchPos;
-
-
-
     // 가지종류전환을 위한 랜덤값생성위한 인티져값
     int RandBranchIndex;
 
     // 가지예외체크를 위한 이전가지의 종류값받아올 변수
     int PreNum = 10;
 
-    float initial_Speed = 1.0f; //발판인덱스 및 초기 속도 제어 (1부터 시작, 1초)
-    float accel = 1.0f; //타이머가속
-
     //도약발판 생성용 플래그
     bool FlyFlag = false;
 
-
+    /*============================================================*/
 
 
 
@@ -161,16 +182,28 @@ public class ObjectPosition : MonoBehaviour
         }
     }
 
-    //========================기둥, 가지 생성부=========================//
+    //========================기둥, 가지, 아이템 생성부=========================//
     IEnumerator BranchRandomGenerator()
     {
+        //아이템을 랜덤으로 생성할 배열
+        GameObject[] ItemArray = new GameObject[6];
+
 
         //가지를 랜덤으로 생성할 배열
         GameObject[] BranchArray = new GameObject[7];
 
 
-        //배열에 오브젝트들을 넣어줌
+        ////////*아이템배열에 오브젝트들을 넣어줌*////////
+        ItemArray[0] = Shield;
+        ItemArray[1] = superjump;
+        ItemArray[2] = booster;
+        ItemArray[3] = coin;
+        ItemArray[4] = score;
+        ItemArray[5] = flowerGarden;
 
+
+
+        ////////*가지배열에 오브젝트들을 넣어줌*////////
         // 노말
         BranchArray[0] = BranchObject_normal1;
         BranchArray[1] = BranchObject_normal2;
@@ -186,6 +219,13 @@ public class ObjectPosition : MonoBehaviour
         //시든
         BranchArray[6] = BranchObject_fail;
 
+        //스케일을 변환시켜준다.
+        Shield.transform.localScale = new Vector(0.086578,1,1);
+        superjump.transform.localScale = new Vector(0.086578, 1, 1);
+        booster.transform.localScale = new Vector(0.086578, 1, 1);
+        coin.transform.localScale = new Vector(0.086578, 1, 1);
+        score.transform.localScale = new Vector(0.086578, 1, 1);
+        flowerGarden.transform.localScale = new Vector(0.086578, 1, 1);
 
 
         //스케일을 변환시켜준다.
@@ -370,7 +410,7 @@ public class ObjectPosition : MonoBehaviour
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
-                                leafList.Add(_leaf); 
+                                leafList.Add(_leaf);
                             }
 
                             //노말가지2, 꽃가지 1이 아닐떄
@@ -420,7 +460,7 @@ public class ObjectPosition : MonoBehaviour
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
-                                leafList.Add(_leaf); 
+                                leafList.Add(_leaf);
                             }
 
                             //노말가지2, 꽃가지1이 아닐때
@@ -501,7 +541,7 @@ public class ObjectPosition : MonoBehaviour
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
-                                leafList.Add(_leaf); 
+                                leafList.Add(_leaf);
                             }
 
                             if (RandBranchIndex == 6)
@@ -557,7 +597,7 @@ public class ObjectPosition : MonoBehaviour
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
-                                leafList.Add(_leaf); 
+                                leafList.Add(_leaf);
                             }
 
                             else if (RandBranchIndex != 1 && RandBranchIndex != 4 && RandBranchIndex != 5 && checkCreate == false)
@@ -594,7 +634,7 @@ public class ObjectPosition : MonoBehaviour
                                 checkCreate = true;
 
                                 // 생성된 오브젝트를 leafList 에 add로 추가.
-                                leafList.Add(_leaf); 
+                                leafList.Add(_leaf);
                             }
 
                             if (RandBranchIndex == 5)
@@ -663,9 +703,9 @@ public class ObjectPosition : MonoBehaviour
             //리스트의 마지막에 있는 클론의 2번째 자식위치값을 RightBranchPos에 받아옴
             LeftBranchPos = branchList[branchList.Count - 1].transform.GetChild(2).transform.position;
 
-            //GameObject lastBranch = branchList[branchList.Count - 1];
-            //lastBranch.transform.GetChild(0);
 
+            //리스트의 마지막에 있는 클론의 0번째 자식위치값을 lastBranchPos에 받아옴
+            lastItemPos = leafList[leafList.Count - 1].transform.GetChild(0).transform.position;
 
             //0번째 객체가 이상한곳에 생성되어서 false처리 해놓음...
             leafList[0].SetActive(false);
