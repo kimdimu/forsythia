@@ -70,8 +70,7 @@ public class ObjectPosition : MonoBehaviour
     //아이템객체를 관리할 리스트 생성
     List<GameObject> ItemList = new List<GameObject>();
 
-
-
+    
     /*========================== 기둥용 ==================================*/
 
 
@@ -108,6 +107,10 @@ public class ObjectPosition : MonoBehaviour
 
     // 가지종류전환을 위한 랜덤값생성위한 인티져값
     int RandBranchIndex;
+
+    //아이템 종류 전환을 위한 랜덤값생성위한 인티져값
+    int RandItemIndex;
+
 
     // 가지예외체크를 위한 이전가지의 종류값받아올 변수
     int PreNum = 10;
@@ -220,12 +223,12 @@ public class ObjectPosition : MonoBehaviour
         BranchArray[6] = BranchObject_fail;
 
         //스케일을 변환시켜준다.
-        Shield.transform.localScale = new Vector(0.086578,1,1);
-        superjump.transform.localScale = new Vector(0.086578, 1, 1);
-        booster.transform.localScale = new Vector(0.086578, 1, 1);
-        coin.transform.localScale = new Vector(0.086578, 1, 1);
-        score.transform.localScale = new Vector(0.086578, 1, 1);
-        flowerGarden.transform.localScale = new Vector(0.086578, 1, 1);
+        Shield.transform.localScale = new Vector3(0.086578f,20,20);
+        superjump.transform.localScale = new Vector3(0.086578f, 20, 20);
+        booster.transform.localScale = new Vector3(0.086578f, 20, 20);
+        coin.transform.localScale = new Vector3(0.086578f, 20, 20);
+        score.transform.localScale = new Vector3(0.086578f, 20, 20);
+        flowerGarden.transform.localScale = new Vector3(0.086578f, 20, 20);
 
 
         //스케일을 변환시켜준다.
@@ -254,7 +257,10 @@ public class ObjectPosition : MonoBehaviour
         {
 
             //줄기의 쿼터니온을 조절 (270이 수직으로서는 각도 왼쪽으로 25도, 오른쪽으로 25도 하여 총 50도로 조절)
-            RandQNum = Random.Range(245, 295); //245 ~ 295 랜덤으로 숫자 생성
+            RandQNum = Random.Range(245, 295); //245 ~ 294 랜덤으로 숫자 생성
+
+            int teatrandnum = Random.Range(1, 11); //1~10까지 랜덤숫자 생성
+
 
 
             // << 처음 : 빈오브젝트의 위치>> 
@@ -281,6 +287,28 @@ public class ObjectPosition : MonoBehaviour
                 //제한시간이 0보다 크거나 같을때 까지만 나뭇가지생성 (기둥은 계속 생성)
                 if (LimitTime >= 0)
                 {
+
+                    if (teatrandnum % 3 == 0) 
+                    {
+                        RandItemIndex = Random.Range(0, 6); //0~5까지
+
+                        if (ChangeDir == 0) //오른쪽
+                        {
+                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
+
+                            // 생성된 오브젝트를 leafList 에 add로 추가.
+                            ItemList.Add(_item);
+
+                        }
+
+                        else if (ChangeDir == 1) //왼쪽
+                        {
+                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
+
+                            // 생성된 오브젝트를 leafList 에 add로 추가.
+                            ItemList.Add(_item);
+                        }
+                    }
 
                     /*==========================오른쪽에 가지생성=========================*/
 
