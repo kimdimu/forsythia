@@ -1599,7 +1599,7 @@ GameObject:
   - component: {fileID: 723885317}
   m_Layer: 0
   m_Name: flowerGarden
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1989,7 +1989,7 @@ GameObject:
   - component: {fileID: 844300518}
   m_Layer: 0
   m_Name: superjump
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2080,7 +2080,7 @@ GameObject:
   - component: {fileID: 876340170}
   m_Layer: 0
   m_Name: Score2X
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2917,7 +2917,7 @@ GameObject:
   - component: {fileID: 1290543240}
   m_Layer: 0
   m_Name: coin2X
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3423,7 +3423,7 @@ GameObject:
   - component: {fileID: 1507745170}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3994,7 +3994,7 @@ GameObject:
   - component: {fileID: 1740872543}
   m_Layer: 0
   m_Name: booster
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
