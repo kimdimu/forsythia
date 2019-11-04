@@ -294,7 +294,7 @@ public class ObjectPosition : MonoBehaviour
 
                         if (ChangeDir == 0) //오른쪽
                         {
-                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
+                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y + 40, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
 
                             // 생성된 오브젝트를 leafList 에 add로 추가.
                             ItemList.Add(_item);
@@ -303,7 +303,7 @@ public class ObjectPosition : MonoBehaviour
 
                         else if (ChangeDir == 1) //왼쪽
                         {
-                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
+                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y+22, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
 
                             // 생성된 오브젝트를 leafList 에 add로 추가.
                             ItemList.Add(_item);

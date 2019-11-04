@@ -2682,7 +2682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271602589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0199, y: 0.0094, z: 0.1673}
+  m_LocalPosition: {x: 0.12, y: -0.078, z: 0.293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 661815397}
@@ -4098,41 +4098,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cecb4070462a3e3449d6fc112903bbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Shield: {fileID: 1507745168}
-  branch_normal1: {fileID: 899337183}
-  normal_empty1: {fileID: 591912799}
-  branch_normal2: {fileID: 661815396}
-  normal_empty2: {fileID: 1271602589}
-  branch_leaf1: {fileID: 148333841}
-  leaf_empty1: {fileID: 1562523514}
-  branch_leaf2: {fileID: 1852417314}
-  leaf_empty2: {fileID: 632542527}
-  branch_forsy1: {fileID: 289157170}
-  forsy_empty1: {fileID: 1373090446}
-  branch_forsy2: {fileID: 1351408441}
-  forsy_empty2: {fileID: 433737034}
-  branch_break: {fileID: 1487282434}
-  break_empty: {fileID: 1406581359}
-  testPos:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  emptyPos:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  RandItemIndex: 0
-  emptyRand: 0
-  isItemCreate: 0
-  ItemList: []
 --- !u!1 &1845927915
 GameObject:
   m_ObjectHideFlags: 0
