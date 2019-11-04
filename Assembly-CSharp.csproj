@@ -63,6 +63,7 @@
      <Compile Include="Assets\InGameScript\InGamePlayer.cs" />
      <Compile Include="Assets\InGameScript\SoundSetting.cs" />
      <Compile Include="Assets\InGameScript2\ButtonCon.cs" />
+     <Compile Include="Assets\InGameScript2\ColorChange_timer.cs" />
      <Compile Include="Assets\InGameScript2\ItemControler.cs" />
      <Compile Include="Assets\InGameScript2\ObjectPosition.cs" />
      <Compile Include="Assets\InGameScript2\RandBrunch.cs" />

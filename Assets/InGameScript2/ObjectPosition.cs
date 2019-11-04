@@ -18,14 +18,9 @@ using UnityEngine.UI;
 
 public class ObjectPosition : MonoBehaviour
 {
-
-    /*=========================== 타임체크 =================================*/
-
-    public float FirstTime; //전체시간
-    public float LimitTime; //변동시간
-    public float branchTimer; //나뭇가지 타이머
-
-    public float OverTimer;
+    float LimitTime; //제한 시간 1분으로 
+    float branchTimer; //나뭇가지 타이머
+    float OverTimer; // 색상 변경용
 
     float initial_Speed = 1.0f; //발판인덱스 및 초기 속도 제어 (1부터 시작, 1초)
     float accel = 1.0f; //타이머가속
@@ -70,7 +65,6 @@ public class ObjectPosition : MonoBehaviour
     //아이템객체를 관리할 리스트 생성
     List<GameObject> ItemList = new List<GameObject>();
 
-    
     /*========================== 기둥용 ==================================*/
 
 
@@ -88,6 +82,7 @@ public class ObjectPosition : MonoBehaviour
     public GameObject Branch1;
     public GameObject Branch2;
     public GameObject Branch3;
+
 
     //기둥의 회전 x값을 조정하는 변수
     int RandQNum;
@@ -141,6 +136,7 @@ public class ObjectPosition : MonoBehaviour
         //벡터에 가지의 왼쪽 빈오브젝트의 위치값을 넣어준다
         LeftBranchPos = this.RandomBranch_Right.transform.position;
 
+        LimitTime = 60;
 
     }
 
@@ -150,7 +146,7 @@ public class ObjectPosition : MonoBehaviour
         LimitTime -= Time.deltaTime; // 일정한 시간에 따라 감소
         branchTimer += Time.deltaTime; // 일정한 시간에 따라 증가
 
-        //Debug.Log("제한시간 : " + LimitTime);
+        Debug.Log("제한시간 : " + LimitTime);
 
         if (branchTimer >= 10) // 10초로 설정.
         {
@@ -191,7 +187,6 @@ public class ObjectPosition : MonoBehaviour
         //아이템을 랜덤으로 생성할 배열
         GameObject[] ItemArray = new GameObject[6];
 
-
         //가지를 랜덤으로 생성할 배열
         GameObject[] BranchArray = new GameObject[7];
 
@@ -223,7 +218,7 @@ public class ObjectPosition : MonoBehaviour
         BranchArray[6] = BranchObject_fail;
 
         //스케일을 변환시켜준다.
-        Shield.transform.localScale = new Vector3(0.086578f,20,20);
+        Shield.transform.localScale = new Vector3(0.086578f, 20, 20);
         superjump.transform.localScale = new Vector3(0.086578f, 20, 20);
         booster.transform.localScale = new Vector3(0.086578f, 20, 20);
         coin.transform.localScale = new Vector3(0.086578f, 20, 20);
@@ -288,26 +283,14 @@ public class ObjectPosition : MonoBehaviour
                 if (LimitTime >= 0)
                 {
 
-                    if (teatrandnum % 3 == 0) 
+                    if (teatrandnum % 3 == 0) //1~11까지 중 3으로 나누어서 나머지가 0이 나오는 수 : 3,6,9 /// 10개 중 3개 -> 30%의 확률 
                     {
                         RandItemIndex = Random.Range(0, 6); //0~5까지
 
-                        if (ChangeDir == 0) //오른쪽
-                        {
-                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y + 40, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
+                        GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y + 30, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
 
-                            // 생성된 오브젝트를 leafList 에 add로 추가.
-                            ItemList.Add(_item);
-
-                        }
-
-                        else if (ChangeDir == 1) //왼쪽
-                        {
-                            GameObject _item = Instantiate(ItemArray[RandItemIndex], new Vector3(lastItemPos.x, lastItemPos.y+22, lastItemPos.z), Quaternion.Euler(-0, 90, 0)) as GameObject;
-
-                            // 생성된 오브젝트를 leafList 에 add로 추가.
-                            ItemList.Add(_item);
-                        }
+                        // 생성된 오브젝트를 leafList 에 add로 추가.
+                        ItemList.Add(_item);
                     }
 
                     /*==========================오른쪽에 가지생성=========================*/
@@ -738,15 +721,9 @@ public class ObjectPosition : MonoBehaviour
             //0번째 객체가 이상한곳에 생성되어서 false처리 해놓음...
             leafList[0].SetActive(false);
             branchList[0].SetActive(false);
-
-
-
-
+            
             //0.5f초후에 다시 while문 돈다.
             yield return new WaitForSeconds(0.5f);
-
-
-
         }
     }
 }
