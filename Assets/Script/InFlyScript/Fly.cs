@@ -12,13 +12,15 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     bool right, left;
 
     float _Time;
-    //public static float GetSpeedTime;
+
+    Quaternion StartRotate; //처음 시작 회전 값
 
     void Start()
     {
         _player.GetComponent<Rigidbody>();
         right = false;
         left = false;
+        StartRotate = player.transform.rotation;
     }
 
     void Update()
@@ -29,19 +31,26 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //오른쪽 화면으로 나가려고 할 경우
         if (player.transform.position.x >= 600)
             player.transform.position = new Vector3(600, player.transform.position.y, player.transform.position.z);
-
-        if(right)
-            _player.AddForce(Vector3.right * TestFly.MoveSpeed);
-        if(left)
-            _player.AddForce(Vector3.left * TestFly.MoveSpeed);
-
-        //GetSpeedTime += Time.deltaTime; //일정한 시간에 따라 증가함
-
-        //시작하고 3초동안은 빠르게 나아간다
-        //if(GetSpeedTime >= 0 && GetSpeedTime <= 3.0f)
+        //만약 왼쪽으로 치우치면 돌아오기
+        //if (player.transform.rotation.x >= StartRotate)
         //{
-        //    plyer.transform.position += Vector3.forward * 100 * Time.deltaTime;
+
         //}
+        //만약 오른쪽으로 치우치면 돌아오기
+
+        if (right)
+        {
+            _player.AddForce(Vector3.right * TestFly.MoveSpeed);
+            _player.transform.Rotate(new Vector3(0, 0, Time.deltaTime * -20));
+            //만약 -70도를 넘으려하면 고정
+        }
+
+        if (left)
+        {
+            _player.AddForce(Vector3.left * TestFly.MoveSpeed);
+            _player.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 20));
+            //만약 70도를 넘으려하면 고정
+        }
     }
     //오른쪽으로 버튼을 누르면
     public void RightFly()

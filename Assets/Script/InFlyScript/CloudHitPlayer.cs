@@ -6,6 +6,7 @@ public class CloudHitPlayer : MonoBehaviour
 {
     float MoreSpeedTime;
     bool IsHit;
+    public static bool Onparicle;
 
     void Update()
     {
@@ -16,10 +17,11 @@ public class CloudHitPlayer : MonoBehaviour
         //구름링을 통과한 뒤 1.5초가 지나면
         if (MoreSpeedTime >= 1.5f)
         {
-            TestFly.BirdSpeed = 200; //속도 낮추기
-            InFlyCamera.speed = 200;
+            TestFly.BirdSpeed = 400; //속도 낮추기
+            InFlyCamera.speed = 400;
             MoreSpeedTime = 0f; //시간 초기화
             IsHit = false;
+            Onparicle = false;
         }
     }
 
@@ -27,9 +29,10 @@ public class CloudHitPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") //구름링이 Player 태그와 충돌하면
         {
-            TestFly.BirdSpeed = 250; //속도 증가
-            InFlyCamera.speed = 250;
+            TestFly.BirdSpeed = 550; //속도 증가
+            InFlyCamera.speed = 550;
             IsHit = true;
+            Onparicle = true;
         }
     }
 }
