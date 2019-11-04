@@ -1917,8 +1917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd6809faeef98b4b8004e08f6914482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BSoundOff: {fileID: 0}
-  BSoundOn: {fileID: 0}
+  BSoundOff: {fileID: 1182767561}
+  BSoundOn: {fileID: 1769096204}
   BackAudio: {fileID: 0}
 --- !u!114 &479477675
 MonoBehaviour:
