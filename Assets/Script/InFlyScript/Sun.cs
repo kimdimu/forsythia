@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sun : MonoBehaviour
-{
-    public GameObject Sphere; //복제 될 햇살
+{ 
+    public GameObject Sphere; //복제 될 구름링
     public GameObject[] firstground; //구름링 생성 위치
 
     GameObject obj; //클론 받아오는 오브젝트
