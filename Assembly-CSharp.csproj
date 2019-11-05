@@ -125,6 +125,7 @@
     <Compile Include="Assets\Script\InFlyScript\ScoreManager.cs" />
     <Compile Include="Assets\Script\InFlyScript\Sun.cs" />
     <Compile Include="Assets\Script\InFlyScript\TestFly.cs" />
+    <Compile Include="Assets\Script\InFlyScript\TestSun.cs" />
     <Compile Include="Assets\Script\InGameScript\BackSound.cs" />
     <Compile Include="Assets\Script\InGameScript\ClickButton.cs" />
     <Compile Include="Assets\Script\InGameScript\DataController.cs" />
