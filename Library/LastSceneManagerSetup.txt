@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene/TestFly.unity
+- path: C:/Users/403_20/Desktop/forsythia/Assets/Scene/TestInGame_testest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
