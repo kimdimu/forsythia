@@ -11,18 +11,8 @@ public class InGamePlayer : MonoBehaviour
     public GameObject StrongBtn; //강하게 버튼
     public GameObject WeakBtn; //약하게 버튼
 
-
-    bool a;
-
     int JumpCount = 0; //점프 횟수 카운트
     int UpNum = 0; //밟은 발판 개수 카운트
-
-    public GameObject Ground; //복제 될 물체
-    List<GameObject> GroundList = new List<GameObject>(); //오브젝트 리스트 생성
-
-    GameObject firstground; //처음 발판의 위치 (발판이 생성될 위치)
-
-    GameObject _obj; //생성된 클론
 
     public GameObject BirdJump; //도약 슬라이더
     public GameObject Handle; //선택 바 (움직이는 바)
@@ -34,20 +24,17 @@ public class InGamePlayer : MonoBehaviour
 
     int WangBog = 0; //영역 벗어난 횟수 카운트
 
-    int w = 0, h = 1;
+    int CountCh = 0;
 
     public GameObject LeftJump; //왼쪽 도약 키
     public GameObject RightJump; //오른쪽 도약 키
-
-    int ran; //랜덤 생성되는 발판의 개수 저장
 
     public static bool BigSuccess; //대성공
     public static bool Success; //성공
 
     public GameObject StopPanel;
-    int ChangeDir;
 
-    
+    int ChangeDir;
 
     float LimitTime; //제한 시간 1분으로 
     float branchTimer; //나뭇가지 타이머
@@ -159,9 +146,6 @@ public class InGamePlayer : MonoBehaviour
         StopPanel.SetActive(false); //옵션 창 안보이게 함
 
         StartPosition = Handle.transform.position;//시작위치
-        firstground = GameObject.FindGameObjectWithTag("Ground"); //처음 발판의 위치 받아오기 위해 사용
-
-        //Rigidbody branch1 = GetComponent<Rigidbody>();
 
         //코루틴함수 호출
         StartCoroutine(BranchRandomGenerator());
@@ -180,7 +164,7 @@ public class InGamePlayer : MonoBehaviour
 
     void Update()
     {
-    
+        Debug.Log(StartPosition.x);
 
         //강하게 눌렀을 때 + 약하게 안 눌렀을 때 + 두 칸 다 올라왔으면
         if (ClickButton.IsStrong && ClickButton.IsWeak == false && JumpCount == 0)
@@ -195,27 +179,18 @@ public class InGamePlayer : MonoBehaviour
             JumpCount++;
             UpNum++;
 
-
-            if (g_intList[h] == 1)
+            if (g_intList[CountCh] == 1)
             {
-                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 30, lastItemPos.z);
-                Debug.Log("ReSULT : " + g_intList[h]);
-                //Debug.Log("truee"+a);
-                //Debug.Log(leafList[UpNum].transform.position.x);
-                //Debug.Log("1.." + g_intList[h]);
+                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
 
-                h++;
+                CountCh++;
             }
 
-            else if(g_intList[h] == 0)
+            else if(g_intList[CountCh] == 0)
             {
-              
-                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 30, lastItemPos.z);
-                Debug.Log("ReSULT : " + g_intList[h]);
-                //Debug.Log("falsyer"+a);
-                // Debug.Log(leafList[UpNum].transform.position.x);
-                //Debug.Log("0.." + g_intList[h]);
-                h++;
+                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
+
+                CountCh++;
             }
 
             if (JumpCount >= 1)
@@ -277,8 +252,6 @@ public class InGamePlayer : MonoBehaviour
 
             if (WangBog == 4) //영역 네 번 벗어나면 = 왕복 두 번
             {
-                Destroy(_obj.gameObject); //클론 삭제
-
                 UpNum = 0; //발판 밟은 개수 초기화
                 LeftJump.SetActive(false); //왼쪽 도약 안보이게함
                 RightJump.SetActive(false); //오른쪽 도약 안보이게함
@@ -302,12 +275,8 @@ public class InGamePlayer : MonoBehaviour
             StopPanel.SetActive(false); //옵션 판넬 안보이게 함
         }
 
-        //
-
         LimitTime -= Time.deltaTime; // 일정한 시간에 따라 감소
         branchTimer += Time.deltaTime; // 일정한 시간에 따라 증가
-
-        //Debug.Log("제한시간 : " + LimitTime);
 
         if (branchTimer >= 10) // 10초로 설정. (10초가 되면 standard 기둥과 나무를 빨강으로 변경)
         {
@@ -997,31 +966,3 @@ public class InGamePlayer : MonoBehaviour
         }
     }
 }
-
-        //발판 클론 생성시키는 함수
-        //void GroundInit()
-        //{
-        //    ran = Random.Range(10, 30);
-
-        //    for (int i = 0; i < ran; i++)
-        //    {
-        //        //클론이 될 오브젝트, 생성 위치, 생성 회전 방향(사원수의 값), 부모의 설정
-        //        _obj = (GameObject)Instantiate(Ground, firstground.transform.position, firstground.transform.rotation);
-        //        _obj.transform.localScale = new Vector3(2f, 2f, 2f); //콜론 크기 변경
-
-        //        GroundList.Add(_obj); //클론 i 만큼 생성 (현재 i는 총 10개, 즉 10개 클론 생성) 후 리스트에 인덱스 번호 줌
-
-        //        //클론 위치 변경
-        //        if (i % 2 == 0) //i가 짝수일 경우 왼쪽에 생성
-        //        {
-        //            GroundList[i].transform.position = new Vector3(firstground.transform.position.x + 20f,
-        //            firstground.transform.position.y + 15f * i, transform.position.z);
-        //        }
-        //        else //i가 홀수일 경우 오른쪽에 생성
-        //        {
-        //            GroundList[i].transform.position = new Vector3(firstground.transform.position.x,
-        //            firstground.transform.position.y + 15f * i, transform.position.z);
-        //        }
-        //    }
-        //}
- 
