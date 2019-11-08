@@ -128,6 +128,7 @@
     <Compile Include="Assets\Script\InFlyScript\TestSun.cs" />
     <Compile Include="Assets\Script\InGameScript\BackSound.cs" />
     <Compile Include="Assets\Script\InGameScript\ClickButton.cs" />
+    <Compile Include="Assets\Script\InGameScript\Cloud.cs" />
     <Compile Include="Assets\Script\InGameScript\DataController.cs" />
     <Compile Include="Assets\Script\InGameScript\EffectSound.cs" />
     <Compile Include="Assets\Script\InGameScript\InGameCamera.cs" />
