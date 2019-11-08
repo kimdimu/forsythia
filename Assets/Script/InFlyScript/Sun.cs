@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sun : MonoBehaviour
-{ 
+{
     public GameObject Sphere; //복제 될 구름링
     public GameObject[] firstground; //구름링 생성 위치
 
@@ -21,7 +21,7 @@ public class Sun : MonoBehaviour
     void Update()
     {
         //만약 비행 게이지가 0이 되어 비행이 끝나면
-        if(TestFly.IsFlyEnd == true)
+        if (TestFly.IsFlyEnd == true)
         {
             Destroy(obj.gameObject); //클론을 지운다
         }
