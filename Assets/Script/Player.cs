@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         //Debug.Log(SwipeLength);
         if (SwipeLength >= 5 || SwipeLength <= -5)
         {
-            SceneManager.LoadScene("TestInGame");
+            //SceneManager.LoadScene("TestInGame");
 
         }
 
