@@ -10,14 +10,14 @@ public class HitPlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") //햇살이 Player 태그와 충돌하면
         {
-           // if (InGamePlayer.BigSuccess)
-            //{
+         //  if (InGamePlayer.BigSuccess)
+          //  {
                 ScoreManager.Score += SunScore * 1.5f;
-            //}
-            //if (InGamePlayer.Success)
-            //{
-               // ScoreManager.Score += SunScore;
-           // }
+          //  }
+           //else if (InGamePlayer.Success)
+          //  {
+                ScoreManager.Score += SunScore;
+          //  }
         }
     }
 }

@@ -31,25 +31,17 @@ public class Fly : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //오른쪽 화면으로 나가려고 할 경우
         if (player.transform.position.x >= 600)
             player.transform.position = new Vector3(600, player.transform.position.y, player.transform.position.z);
-        //만약 왼쪽으로 치우치면 돌아오기
-        //if (player.transform.rotation.x >= StartRotate)
-        //{
-
-        //}
-        //만약 오른쪽으로 치우치면 돌아오기
 
         if (right)
         {
             _player.AddForce(Vector3.right * TestFly.MoveSpeed);
             _player.transform.Rotate(new Vector3(0, 0, Time.deltaTime * -20));
-            //만약 -70도를 넘으려하면 고정
         }
 
         if (left)
         {
             _player.AddForce(Vector3.left * TestFly.MoveSpeed);
             _player.transform.Rotate(new Vector3(0, 0, Time.deltaTime * 20));
-            //만약 70도를 넘으려하면 고정
         }
     }
     //오른쪽으로 버튼을 누르면

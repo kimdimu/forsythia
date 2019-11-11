@@ -48,7 +48,10 @@ public class LeafDeleteScript : MonoBehaviour
         {
             bCheck = false;
             Destroy(gameObject, 3.0f);
-            Debug.Log("A");
+        }
+        else if(other.transform.tag  == "Player")
+        {
+            bCheck = false;
         }
     } 
 }

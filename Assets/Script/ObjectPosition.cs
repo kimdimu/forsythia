@@ -719,7 +719,7 @@ public class ObjectPosition : MonoBehaviour
             branchList[0].SetActive(false);
 
             //0.5f초후에 다시 while문 돈다.
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 

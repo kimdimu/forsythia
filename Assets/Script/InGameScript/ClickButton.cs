@@ -45,4 +45,9 @@ public class ClickButton : MonoBehaviour
     {
         SceneManager.LoadScene("TestMain");
     }
+
+    public void Again()
+    {
+        SceneManager.LoadScene("TestInGame");
+    }
 }

@@ -30,22 +30,31 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))  //캐릭터의 콜라이더 박스안에 있는지 
         {
-            if (Ray.Equals(Target.transform.position, Input.mousePosition))
+            RaycastHit hit;
+            Ray ray = UnityEngine.Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+            //if (Ray.Equals(Target.transform.position, Input.mousePosition))
+            //{
+            //    this.StartPos = Input.mousePosition;
+            //}
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Debug.Log(Target.transform.localPosition);
-                this.StartPos = Input.mousePosition;
+                if(hit.transform.tag.Equals("Player"))
+                {
+                    this.StartPos = Input.mousePosition;
+                }
             }
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && StartPos.x != 0)
         {
             this.LastPos = Input.mousePosition;
             SwipeLength = LastPos.x - StartPos.x;
         }
-        //Debug.Log(SwipeLength);
+        Debug.Log(SwipeLength);
         if (SwipeLength >= 5 || SwipeLength <= -5)
         {
-            //SceneManager.LoadScene("GamePlay");
-
+            SceneManager.LoadScene("TestInGame");
         }
 
         //if (Input.GetKey(KeyCode.LeftArrow))
