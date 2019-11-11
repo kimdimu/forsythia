@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
         {
             if (Ray.Equals(Target.transform.position, Input.mousePosition))
             {
-                Debug.Log(Target.transform.localPosition);
                 this.StartPos = Input.mousePosition;
             }
         }
@@ -41,11 +40,10 @@ public class Player : MonoBehaviour
             this.LastPos = Input.mousePosition;
             SwipeLength = LastPos.x - StartPos.x;
         }
-        //Debug.Log(SwipeLength);
+        Debug.Log(SwipeLength);
         if (SwipeLength >= 5 || SwipeLength <= -5)
         {
-            //SceneManager.LoadScene("TestInGame");
-
+            SceneManager.LoadScene("TestInGame");
         }
 
         //if (Input.GetKey(KeyCode.LeftArrow))
