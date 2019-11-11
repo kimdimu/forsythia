@@ -9,7 +9,7 @@ using UnityEngine.UI;
 점수 체크 해주세요. 강하게 조심히 도약 햇살 구름링 같이 제가 한 부분은 제가 체크했습니둡
 ex. ScoreManager.Score += 1000; //도약 했으니 1000점 추가
 도약시점 체크해주세요.
-=> 이부분 : if (FlyFlag == true) //끝에 다다르면
+=> 이부분 : if (FlyFlag == true) //끝에 다다르면 ===> 햇슴둥
  */
 public class InGamePlayer : MonoBehaviour
 {
@@ -37,6 +37,7 @@ public class InGamePlayer : MonoBehaviour
 
     int CountCh = 0;
 
+    public static int jumpNum = 0;
     public GameObject LeftJump; //왼쪽 도약 키
     public GameObject RightJump; //오른쪽 도약 키
 
@@ -142,6 +143,7 @@ public class InGamePlayer : MonoBehaviour
     //도약발판 생성용 플래그
     bool FlyFlag = false;
 
+   
     void Start()
     {
         FlyBranch = GameObject.FindGameObjectWithTag("fly");
@@ -194,9 +196,10 @@ public class InGamePlayer : MonoBehaviour
                 UpNum++; //발판 개수 증가
 
                 ScoreManager.Score += BranchScore * 2f; //점수 두배 증가
-
-                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
-
+                if (UpNum != 1)
+                {
+                    _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
+                }
                 if (JumpCount == 2) //발판을 두 번 밟으면
                 {
                     ClickButton.IsStrong = false; //강하게 누른 것이 풀림
@@ -213,17 +216,21 @@ public class InGamePlayer : MonoBehaviour
 
             ScoreManager.Score += BranchScore * 1f; //점수 한배 증가
 
-            if (g_intList[CountCh] == 1)
+            if (g_intList[CountCh] == 1)//
             {
-                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
-
+               if (UpNum != 1)
+                {
+                    _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
+                }
                 CountCh++;
             }
 
             else if(g_intList[CountCh] == 0)
             {
-                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
-
+                if (UpNum != 1)
+                {
+                    _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
+                }
                 CountCh++;
             }
 
@@ -247,10 +254,10 @@ public class InGamePlayer : MonoBehaviour
             // 성공_StartPosition.x = 85, 성공_EndPosition.x = 190
 
             //오른쪽 도약 키, 왼쪽 도약 키 하나라도 눌렀으면
-            if(ClickButton.IsRightJump || ClickButton.IsLeftJump)
+            if (ClickButton.IsRightJump || ClickButton.IsLeftJump)
             {
                 //실패 영역에서 눌렀으면 게임 종료
-                if((Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 85) ||
+                if ((Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 85) ||
                 (Handle.transform.position.x >= 190 && Handle.transform.position.x <= EndPosition.x))
                 {
 #if UNITY_EDITOR
@@ -461,7 +468,7 @@ public class InGamePlayer : MonoBehaviour
         BranchObject_fail.transform.localScale = new Vector3(445.8f, 400, 549.2230f);
 
         //도약발판
-        FlyBranch.transform.localScale = new Vector3(60.13705f, 2.30032f, 94.628f);
+        FlyBranch.transform.localScale = new Vector3(40.13705f, 1.30032f, 84.628f);
 
         //=================================================//
         //pos1과 pos2 ,pos3를 벡터로 선언
@@ -1021,7 +1028,14 @@ public class InGamePlayer : MonoBehaviour
 
 
             //리스트의 마지막에 있는 클론의 0번째 자식위치값을 lastBranchPos에 받아옴
-            lastItemPos = leafList[leafList.Count - 1].transform.GetChild(0).transform.position;
+            if (UpNum == 0)
+            {
+                lastItemPos = leafList[0].transform.GetChild(0).transform.position;
+            }
+            else if (UpNum != 0)
+            {
+                lastItemPos = leafList[UpNum+1].transform.GetChild(0).transform.position;
+            }
 
             //0번째 객체가 이상한곳에 생성되어서 false처리 해놓음...
             leafList[0].SetActive(false);

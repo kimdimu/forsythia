@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/TestInGame.unity
     guid: a12985b6f1e9a3c42a60f350307ad5e4
+  - enabled: 1
+    path: Assets/Scene/TestFly.unity
+    guid: 295946a861af3e94ca32f5e62027b64f
   m_configObjects: {}

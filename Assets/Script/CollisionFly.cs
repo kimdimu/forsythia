@@ -16,11 +16,11 @@ public class CollisionFly : MonoBehaviour
     }
 
 
-    void onTriggerEnter(Collider col) // 박스 영역에 들어오면 호출
+    void OnTriggerEnter(Collider col) // 박스 영역에 들어오면 호출 //ㅠ.ㅠ 함수명.....
     {
         if (col.gameObject.tag == "fly")
         {
-            Debug.Log("chechekhckhekhckehkche!");
+            Debug.Log("Check");
             InGamePlayer.flyCheck = true;
         }
     }

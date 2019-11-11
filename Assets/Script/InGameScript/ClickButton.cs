@@ -13,14 +13,21 @@ public class ClickButton : MonoBehaviour
     public static bool IsRightJump = false; //오른쪽 도약 키를 눌렀는지
     public static bool IsStop = false; //옵션을 눌렀는지
 
+    public static bool isFIrstJump = true;
+
     public void Strong()
     {
-        IsStrong = true;
+       IsStrong = true;
+
     }
 
     public void Weak()
     {
         IsWeak = true;
+
+
+
+
     }
 
     public void LeftJump()
