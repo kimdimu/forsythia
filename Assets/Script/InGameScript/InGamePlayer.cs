@@ -4,8 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+캐릭터가 지 좆대로 올라갑니다.
+점수 체크 해주세요. 강하게 조심히 도약 햇살 구름링 같이 제가 한 부분은 제가 체크했습니둡
+ex. ScoreManager.Score += 1000; //도약 했으니 1000점 추가
+도약시점 체크해주세요.
+=> 이부분 : if (FlyFlag == true) //끝에 다다르면
+ */
 public class InGamePlayer : MonoBehaviour
 {
+    float BranchScore = 50;
+
     public GameObject _Player; //InGame의 player
 
     public GameObject StrongBtn; //강하게 버튼
@@ -170,7 +179,24 @@ public class InGamePlayer : MonoBehaviour
         if (ClickButton.IsStrong && ClickButton.IsWeak == false && JumpCount == 0)
         {
             //클론이 하나 남았는데 강하게를 누를 수 없도록 하기 위한 방법 필요할듯
-            StartCoroutine("Sleep"); //한 칸 올리고 해당 초동안 멈추고 한 칸 더 올리기
+            //한 칸씩 두 칸 올라가기
+            // StartCoroutine("Sleep"); //한 칸 올리고 해당 초동안 멈추고 한 칸 더 올리기
+            //한 번에 두 칸 올라가기
+            for (int i = 0; i < 2; i++)
+            {
+                JumpCount++;
+                UpNum++; //발판 개수 증가
+
+                ScoreManager.Score += BranchScore * 2f; //점수 두배 증가
+
+                _Player.transform.position = new Vector3(lastItemPos.x, lastItemPos.y + 13, lastItemPos.z);
+
+                if (JumpCount == 2) //발판을 두 번 밟으면
+                {
+                    ClickButton.IsStrong = false; //강하게 누른 것이 풀림
+                    JumpCount = 0; //점프 횟수를 초기화
+                }
+            }
         }
 
         //약하게 눌렀을 때 + 강하게 안 눌렀을 때 + 발판에 닿았을 때
@@ -178,6 +204,8 @@ public class InGamePlayer : MonoBehaviour
         {
             JumpCount++;
             UpNum++;
+
+            ScoreManager.Score += BranchScore * 1f; //점수 한배 증가
 
             if (g_intList[CountCh] == 1)
             {
@@ -200,7 +228,7 @@ public class InGamePlayer : MonoBehaviour
             }
         }
 
-        if  (FlyFlag == true) //끝에 다다르면
+        if (FlyFlag == true) //끝에 다다르면
         {
             StrongBtn.SetActive(false); //강하게 키 안보이게함
             WeakBtn.SetActive(false); //약하게 키 안보이게함
@@ -209,36 +237,62 @@ public class InGamePlayer : MonoBehaviour
             RightJump.SetActive(true); //오른쪽 도약 보이게함
             BirdJump.SetActive(true); //도약 바 보이게함
 
-            /* 대성공_StartPosition.x = 140, 대성공_EndPosition.x = 170,
-             성공_StartPosition.x = 100, 성공_EndPosition.x = 205
-            //오른쪽 도약 키, 왼쪽 도약 키를 같이 눌렀으면
-            if(IsRightJump && IsLeftJump)
+            // 대성공_StartPosition.x = 125, 대성공_EndPosition.x = 155,
+            // 성공_StartPosition.x = 85, 성공_EndPosition.x = 190
+            //오른쪽 도약 키, 왼쪽 도약 키 하나라도 눌렀으면
+            if(ClickButton.IsRightJump || ClickButton.IsLeftJump)
             {
-                //실패 영역에서 눌렀으면
-                if(Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 100) ||
-                Handle.transform.position.x >= 205 && Handle.transform.position.x <= EndPosition.x))
+                //실패 영역에서 눌렀으면 게임 종료
+                if((Handle.transform.position.x >= StartPosition.x && Handle.transform.position.x <= 85) ||
+                (Handle.transform.position.x >= 190 && Handle.transform.position.x <= EndPosition.x))
                 {
-                    //게임 종료
+#if UNITY_EDITOR
+
+                    UnityEditor.EditorApplication.isPlaying = false;
+
+#elif UNITY_WEBPLAYER
+
+               Application.OpenURL("http://google.com");
+
+#else
+
+                 Application.Quit();
+
+#endif
                 }
                 //성공 영역에서 눌렀으면
-                if((Handle.transform.position.x >= 47 && Handle.transform.position.x <= 140) ||
-                (Handle.transform.position.x >= 170 && Handle.transform.position.x <= 270))
+                if ((Handle.transform.position.x >= 40 && Handle.transform.position.x <= 125) ||
+                (Handle.transform.position.x >= 155 && Handle.transform.position.x <= 243))
                 {
+                    ScoreManager.Score += 1000; //도약 했으니 1000점 추가
                     SceneManager.LoadScene("TestFly"); //Fly 시작
                     Success = true;
                 }
                 //대성공 영역에서 눌렀으면
-                if(Handle.transform.position.x >= 140 && Handle.transform.position.x <= 170)
+                if(Handle.transform.position.x >= 125 && Handle.transform.position.x <= 155)
                 {
+                    ScoreManager.Score += 1000; //도약 했으니 1000점 추가
                     SceneManager.LoadScene("TestFly");
                     BigSuccess = true;
                 }
             }
-            //오른쪽 도약 키, 왼쪽 도약 키를 같이 안 눌렀으면
-            if((IsRightJump && !IsLeftJump) || (!IsRightJump && IsLeftJump))
+            //오른쪽 도약 키, 왼쪽 도약 키 하나라도 안 눌렀으면 게임 종료
+            else
             {
-                //게임 종료
-            }*/
+#if UNITY_EDITOR
+
+                UnityEditor.EditorApplication.isPlaying = false;
+
+#elif UNITY_WEBPLAYER
+
+               Application.OpenURL("http://google.com");
+
+#else
+
+                 Application.Quit();
+
+#endif
+            }
             //선택 바의 좌표가 끝나는 좌표보다 크거나 같으면 또는 선택 바의 좌표가 시작 좌표보다 작으면 (빨간 영역 넘어가면)
             if (Handle.transform.position.x >= EndPosition.x || Handle.transform.position.x < StartPosition.x)
             {
@@ -258,8 +312,7 @@ public class InGamePlayer : MonoBehaviour
                 BirdJump.SetActive(false); //도약 바 안보이게함
                 WangBog = 0; //벗어난 영역 횟수 초기화
 
-                //TestFly 씬으로 가 비행을 시작한다
-                SceneManager.LoadScene("TestFly");
+                //게임종료
             }
         }
         if (ClickButton.IsStop) //옵션을 눌러 켜졌으면

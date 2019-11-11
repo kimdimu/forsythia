@@ -8,6 +8,8 @@ public class CloudHitPlayer : MonoBehaviour
     bool IsHit;
     public static bool Onparicle;
 
+    float CloudScore = 300;
+
     void Update()
     {
         if(IsHit == true)
@@ -33,6 +35,8 @@ public class CloudHitPlayer : MonoBehaviour
             InFlyCamera.speed = 550;
             IsHit = true;
             Onparicle = true;
+
+            ScoreManager.Score += CloudScore; //300점 증가
         }
     }
 }

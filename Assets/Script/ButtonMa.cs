@@ -22,14 +22,4 @@ public class ButtonMa : MonoBehaviour
         else if (!IsCameraClick)
             IsCameraClick = true;
     }
-
-    public void IsMission()
-    {
-
-    }
-
-    public void ShowScreen()
-    {
-
-    }
 }
